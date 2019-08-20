@@ -25,3 +25,29 @@ Below is a quick checklist to use a guide when setting up a new repository to sh
     * Clear and concise setup and baseline usage guidelines in top-level README
     * Automated test projects setup
     * Continuous integration builds configured (See [Travis CI](https://travis-ci.org))
+
+
+## Setting up Travis CI
+See [Travis Tutorial](https://docs.travis-ci.com/user/tutorial/)
+
+* Log into Travis CI organization account (github auth)
+* Ensure your repository is public
+* Go to settings for project and select following options...
+    * General
+        * Build pushed branches: yes
+        * Build pushed pull requests: yes
+* Add `.travis.yml` to top-level of repository
+    ```yaml
+    dotnet: 2.2.1
+    language: csharp
+    mono: none
+    script:
+      - dotnet restore
+      - dotnet test
+    solution: All.sln
+    ```
+* After push of `.travis.yml` file, force build (if not already triggered) and debug.
+* Add status image for job to top-level README
+    ```markdown
+    [![Build Status](https://travis-ci.org/AndcultureCode/AndcultureCode.CSharp.Extensions.svg?branch=master)](https://travis-ci.org/AndcultureCode/AndcultureCode.CSharp.Extensions)
+    ```
