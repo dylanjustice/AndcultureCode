@@ -11,3 +11,6 @@ One of the easiest ways to contribute is to participate in discussions on GitHub
 
 ## General feedback and discussions?
 Start a discussion on the project's [repository issue tracker example](https://github.com/AndcultureCode/AndcultureCode.CSharp.Extensions/issues).
+
+## Are you a core contributor preparing a release?
+See our [release guide](RELEASES.md)
