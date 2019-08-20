@@ -39,4 +39,4 @@ Outlines the general steps for publishing a new version of a package.
             * `nuget setapikey <apikey> -Source https://api.nuget.org/v3/index.json`
         * Shell to directory containing .nupkg
         * Use dotnet cli to publish new nupkg
-            * `dotnet nuget push AndcultureCode.CSharp.{ProjectName} -S https://api.nuget.org/v3/index.json`
+            * `dotnet nuget push AndcultureCode.CSharp.{ProjectName} -s https://api.nuget.org/v3/index.json`
