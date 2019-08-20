@@ -21,6 +21,8 @@ Below is a quick checklist to use a guide when setting up a new repository to sh
     Information on contributing to this repo is in the [Contributing Guide](https://github.com/
     AndcultureCode/AndcultureCode/blob/master/CONTRIBUTING.md) in the Home repo.
     ```
+* Setup project specific `.gitignore`
+    * Dotnet C# projects: [VisualStudio.gitignore](https://github.com/github/gitignore/blob/master/VisualStudio.gitignore)
 * Regardless of technology, please ensure the following...
     * Clear and concise setup and baseline usage guidelines in top-level README
     * Automated test projects setup
