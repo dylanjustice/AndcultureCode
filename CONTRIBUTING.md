@@ -7,6 +7,7 @@ One of the easiest ways to contribute is to participate in discussions on GitHub
 * Descriptive comments
 * Read code and try your best to follow established code conventions (ie. format, regions, etc...)
 * Automated tests for new and/ or changed code paths
+* Ensure Travis CI build related to your branch is passing
 
 ## General feedback and discussions?
 Start a discussion on the project's [repository issue tracker example](https://github.com/AndcultureCode/AndcultureCode.CSharp.Extensions/issues).
