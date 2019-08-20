@@ -41,6 +41,9 @@ See [Travis Tutorial](https://docs.travis-ci.com/user/tutorial/)
 * Add `.travis.yml` to top-level of repository
     ```yaml
     dotnet: 2.2.1
+    env:
+      global:
+        - DOTNET_CLI_TELEMETRY_OPTOUT: 1
     language: csharp
     mono: none
     script:
@@ -53,3 +56,25 @@ See [Travis Tutorial](https://docs.travis-ci.com/user/tutorial/)
     ```markdown
     [![Build Status](https://travis-ci.org/AndcultureCode/AndcultureCode.CSharp.Extensions.svg?branch=master)](https://travis-ci.org/AndcultureCode/AndcultureCode.CSharp.Extensions)
     ```
+
+### Further Travis Customizations
+#### Code Coverage with Coverlet and CodeCov
+
+Assumes you've updated your respective project `.csproj` files with the necessary coverlet tooling
+
+* Log into [codecov.io](https://codecov.io) with github
+* Configure for desired repository
+* Copy generated key into password locker
+* Update travis job settings with codecov `CODECOV_TOKEN` environment variable
+* Update `.travis.yml` lines
+    ```yaml
+    after_script:
+        - bash <(curl -s https://codecov.io/bash)
+    script:
+        - dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:Threshold=75
+    ```
+* Add codecov badge to project readme
+    ```markdown
+    [![codecov](https://codecov.io/gh/AndcultureCode/AndcultureCode.CSharp.Extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/AndcultureCode/AndcultureCode.CSharp.Extensions)
+    ```
+* Push and test it out!
