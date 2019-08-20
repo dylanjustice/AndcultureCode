@@ -12,15 +12,8 @@ Outlines the general steps for publishing a new version of a package.
     <PackageIconUrl>https://avatars3.githubusercontent.com/u/32297579?s=460&amp;v=4</PackageIconUrl>
     <PackageId>AndcultureCode.{Language}.{ProjectName}</PackageId>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/AndcultureCode/{RepositoryName}</PackageProjectUrl>
     <Version>1.0.0</Version>
-    ```
-* Add new `<ItemGroup>` to `.csproj`
-    ```xml
-    <ItemGroup>
-        <None Include="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
-    </ItemGroup>
     ```
 * Update project's `.csproj` file `<Version>` using [SemVer conventions](https://docs.microsoft.com/en-us/nuget/concepts/package-versioning)
 * Package your project with `dotnet pack` to create nupkg file
