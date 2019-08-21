@@ -78,3 +78,20 @@ Assumes you've updated your respective project `.csproj` files with the necessar
     [![codecov](https://codecov.io/gh/AndcultureCode/AndcultureCode.CSharp.Extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/AndcultureCode/AndcultureCode.CSharp.Extensions)
     ```
 * Push and test it out!
+
+
+#### Add slack build notifications
+
+* Log into management section of slack `https://{organization}.slack.com/apps/manage`
+* Install/Update Travis CI app integration
+* Click 'Add Configuration'
+* Select your desired slack channel
+* Copy the generated slack token for next steps
+* Install travis cli client on your machine (if not already)
+    * Ensure ruby 1.9.3+ is installed
+    * `$: gem install travis --no-rdoc --no-ri`
+* Use the travis cli to generate a secure token
+    * Reference [travis documentation](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications) if you run into any issues
+    * Change directory (cd) to your repository (where the `.travis.yml` is located)
+    * `$: travis encrypt "{organization}:{slack-token}" --add notifications.slack`
+    * This should automatically update the travis configuration with a secure token
