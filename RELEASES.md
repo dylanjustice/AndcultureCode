@@ -15,7 +15,7 @@ Outlines the general steps for publishing a new version of a package.
     <PackageProjectUrl>https://github.com/AndcultureCode/{RepositoryName}</PackageProjectUrl>
     <Version>1.0.0</Version>
     ```
-* Update project's `.csproj` file `<Version>` using [SemVer conventions](https://docs.microsoft.com/en-us/nuget/concepts/package-versioning)
+* Update project's `.csproj` file `<Version>` using [semantic versioning](https://docs.microsoft.com/en-us/nuget/concepts/package-versioning)
 * Package your project with `dotnet pack` to create nupkg file
     * Now you should have a `.nupkg` file in your `bin/Debug` directory
 * Publish to nuget.org using one of two methods
