@@ -3,7 +3,7 @@ Releasing new versions of a package
 
 Outlines the general steps for publishing a new version of a package.
 
-## Dotnet Core
+## Dotnet Core via NuGet
 * Ensure your `.csproj` has the following details in the `<PropertyGroup>`
     ```xml
     <Company>andculture</Company>
@@ -33,3 +33,11 @@ Outlines the general steps for publishing a new version of a package.
         * Shell to directory containing .nupkg
         * Use dotnet cli to publish new nupkg
             * `dotnet nuget push AndcultureCode.CSharp.{ProjectName} -s https://api.nuget.org/v3/index.json`
+
+## JavaScript via NPM
+* Login with npm in your terminal using organization credentials in password locker
+    * `npm login`
+* Change directory to the folder containing the project `package.json`
+* Update `package.json` version number using [semantic versioning](https://docs.npmjs.com/about-semantic-versioning)
+* Use npm to publish public npm registry
+    * `npm publish`
