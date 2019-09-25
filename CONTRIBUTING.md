@@ -14,6 +14,25 @@ While any and everyone is free to create pull requests per the checklist above, 
 
 For andculture itself, project technical leads and architects will have access to merge and publish versions. Addition of external (non-andculture) employees from the community will be assessed and added as core contributors upon merit on an ongoing basis.
 
+#### Setting up your fork
+Create a new fork on your own github account and clone that to your local development machine.
+
+Add the source AndcultureCode repository as a new remote branch.
+
+```bash
+$: git remote add upstream git://github.com/AndcultureCode/AndcultureCode.{REPOSITORY_NAME}.git
+$: git remote -v
+```
+
+From there you should regularly update `upstream/master` and merge into your branches
+
+```bash
+$: git fetch upstream
+$: git checkout master
+$: git merge upstream/master
+```
+
+
 ## General feedback and discussions?
 Start a discussion on the project's [repository issue tracker example](https://github.com/AndcultureCode/AndcultureCode.CSharp.Extensions/issues).
 
