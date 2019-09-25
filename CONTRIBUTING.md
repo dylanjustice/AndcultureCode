@@ -15,7 +15,7 @@ While any and everyone is free to create pull requests per the checklist above, 
 For andculture itself, project technical leads and architects will have access to merge and publish versions. Addition of external (non-andculture) employees from the community will be assessed and added as core contributors upon merit on an ongoing basis.
 
 #### Setting up your fork
-Create a new fork on your own github account and clone that your local development machine.
+Create a new fork on your own github account and clone that to your local development machine.
 
 Add the source AndcultureCode repository as a new remote branch.
 
