@@ -76,6 +76,6 @@ This classification of services contain logic specific to this entity/domain tha
 
 Logic contained in these services should be state management related operations for that entity/domain. Perhaps the best way to think of it is a state pattern (aka strategy pattern).
 
-Methods and/ or getters/setters should contained should not intersect with aspects/concerns and purely state. For example, it should not set an entity's state AND save. It should just set the state and leave the 'save' to the respective service (ie. 'create' or 'update').
+Code in these actors should not intersect with aspects/concerns and purely pertain to state. For example, it should not set an entity's state AND save. It should just set the state and leave the 'save' to the respective service (ie. 'create' or 'update').
 
 WARNING: Tread lightly. It is very easy to want ot just jam everything related to that entity/domain into these services, which is an anti-pattern.
