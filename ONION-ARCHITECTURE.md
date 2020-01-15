@@ -78,4 +78,4 @@ Logic contained in these services should be state management related operations 
 
 Code in these actors should not intersect with aspects/concerns and purely pertain to state. For example, it should not set an entity's state AND save. It should just set the state and leave the 'save' to the respective service (ie. 'create' or 'update').
 
-WARNING: Tread lightly. It is very easy to want ot just jam everything related to that entity/domain into these services, which is an anti-pattern.
+WARNING: Tread lightly. It is very easy to want to just jam everything related to that entity/domain into these services, which is an anti-pattern.
