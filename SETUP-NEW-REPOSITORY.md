@@ -16,7 +16,7 @@ Note: This differs from our setup of repositories privately for our clients.
     JavaScript project repositories will leverage the dot notation above, but the NPM package itself will use hyphens
     ```javascript
         andculturecode-{languagename}-{packagename}
-        // ex. andculturecode.javascript.core
+        // ex. andculturecode-javascript-core
     ```
 * Configure the correct contributers from the development team
 * Add relevent topics and description
