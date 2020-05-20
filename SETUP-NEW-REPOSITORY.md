@@ -13,6 +13,11 @@ Note: This differs from our setup of repositories privately for our clients.
         AndcultureCode.{LanguageName}.{PopularPackageName}
         // ex. AndcultureCode.CSharp.FactoryGirl
     ```
+    JavaScript project repositories will leverage the dot notation above, but the NPM package itself will use hyphens
+    ```javascript
+        andculturecode-{languagename}-{packagename}
+        // ex. andculturecode.javascript.core
+    ```
 * Configure the correct contributers from the development team
 * Add relevent topics and description
 * Unless otherwise specified: Select Apache 2.0 license
@@ -52,6 +57,20 @@ See [Travis Tutorial](https://docs.travis-ci.com/user/tutorial/)
       - dotnet restore
       - dotnet test
     solution: All.sln
+    ```
+    ```yaml
+    version: "~> 1.0"
+    language: node_js
+    node_js:
+      - 8.16.2
+    install:
+      - npm install -g codecov
+    before_script:
+      - npm install
+    script:
+      - npm run build
+      - npm run coverage
+      - codecov --disable=gcov
     ```
 * After push of `.travis.yml` file, force build (if not already triggered) and debug.
 * Add status image for job to top-level README
@@ -95,5 +114,6 @@ Assumes you've updated your respective project `.csproj` files with the necessar
 * Use the travis cli to generate a secure token
     * Reference [travis documentation](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications) if you run into any issues
     * Change directory (cd) to your repository (where the `.travis.yml` is located)
-    * `$: travis encrypt "{organization}:{slack-token}" --add notifications.slack`
+    * `$: travis encrypt "{organization}:{slack-token}" --add notifications.slack.rooms`
     * This should automatically update the travis configuration with a secure token
+* For more information refer to [travis-ci documentation](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications)
