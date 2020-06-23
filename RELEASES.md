@@ -17,8 +17,8 @@ Regardless of the repository's technical details for building a release build, t
 
 2. New release in github
 
-    - Enter correct release version in the 'Tag version' field
     - Open your project's releases page and click 'Draft/Create a new release' (ex. https://github.com/AndcultureCode/AndcultureCode/releases/new)
+    - Enter correct release version in the 'Tag version' field
     - Copy our conventional [RELEASES-TEMPLATE](./RELEASES-TEMPLATE.md) into the release description and update accordingly
     - Try your best to include all PRs and contributors
 
