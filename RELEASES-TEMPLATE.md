@@ -10,7 +10,7 @@ Notable features:
 - ...
 
 ## Known issues
-// ex. #[PR-NUMBER] [PR subject]
+// ex. #[ISSUE-NUMBER] [Issue subject]
 
 // ex. #62 Some feature that we all need in our lives
 
