@@ -3,6 +3,28 @@ Releasing new versions of a package
 
 Outlines the general steps for publishing a new version of a package.
 
+## General
+Regardless of the repository's technical details for building a release build, there are steps that are technology agnostic.
+
+1. Create release build artifacts
+
+    - Update project to next version number
+    - Create new release build using technology specific steps (see below)
+    - Publish new version to respective registry (ie. npm, nuget, etc...) (see below)
+    - Commit any build artifacts in git (`git commit -m "Rev'd to version 0.0.x"`)
+    - Push to master!
+    - Comment in closed PR threads an update with the newly published version.
+
+2. New release in github
+
+    - Open your project's releases page and click 'Draft/Create a new release' (ex. https://github.com/AndcultureCode/AndcultureCode/releases/new)
+    - Enter correct release version in the 'Tag version' field
+    - Copy our conventional [RELEASES-TEMPLATE](./RELEASES-TEMPLATE.md) into the release description and update accordingly
+    - Try your best to include all PRs and contributors
+
+3. Double check that any build artifacts you created are in fact pushed after you published them to their respective repository (ie. npm, nuget). It is easy to forget this step.
+
+
 ## Dotnet Core via NuGet
 * Ensure your `.csproj` has the following details in the `<PropertyGroup>`
     ```xml
