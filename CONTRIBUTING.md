@@ -17,6 +17,8 @@ For andculture itself, project technical leads and architects will have access t
 #### Setting up your fork
 Create a new fork on your own github account and clone that to your local development machine.
 
+![Forking a repository](assets/contributing-01-forking.gif)
+
 Add the source AndcultureCode repository as a new remote branch.
 
 ```bash
