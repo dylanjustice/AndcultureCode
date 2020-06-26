@@ -34,6 +34,8 @@ $: git checkout master
 $: git merge upstream/master
 ```
 
+![Configuring upstream repository](assets/contributing-02-configuring-upstream.gif)
+
 ### Dotnet Core Libraries
 During development of dotnet core libraries, it might be necessary to test out your changes in a project without the need to publish a new version to nuget. Leveraging local nuget sources you can hook up your project to use your locally cloned source code.
 
