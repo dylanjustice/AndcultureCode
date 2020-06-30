@@ -17,7 +17,7 @@ For andculture itself, project technical leads and architects will have access t
 #### Setting up your fork
 Create a new fork on your own github account and clone that to your local development machine.
 
-![Forking a repository](assets/contributing-01-forking.gif)
+![Forking a repository](./assets/contributing-01-forking.gif)
 
 Add the source AndcultureCode repository as a new remote branch.
 
@@ -34,7 +34,7 @@ $: git checkout master
 $: git merge upstream/master
 ```
 
-![Configuring upstream repository](assets/contributing-02-configuring-upstream.gif)
+![Configuring upstream repository](./assets/contributing-02-configuring-upstream.gif)
 
 ### Dotnet Core Libraries
 During development of dotnet core libraries, it might be necessary to test out your changes in a project without the need to publish a new version to nuget. Leveraging local nuget sources you can hook up your project to use your locally cloned source code.
