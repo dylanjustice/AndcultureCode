@@ -36,6 +36,14 @@ $: git merge upstream/master
 
 ![Configuring upstream repository](./assets/contributing-02-configuring-upstream.gif)
 
+#### Submitting your work for review
+Once you have run the appropriate build and test commands as well as done a personal review of your work. You can create a new pull request for review by the team.
+
+Navigate to your fork on github `https://github.com/{YOUR_USERNAME}/AndcultureCode.{REPOSITORY_NAME}/pulls` and click to create a new pull request.
+
+![Creating a pull request](./assets/contributing-03-creating-a-pull-request.gif)
+
+
 ### Dotnet Core Libraries
 During development of dotnet core libraries, it might be necessary to test out your changes in a project without the need to publish a new version to nuget. Leveraging local nuget sources you can hook up your project to use your locally cloned source code.
 
