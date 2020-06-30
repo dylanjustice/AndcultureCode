@@ -37,7 +37,7 @@ $: git merge upstream/master
 ![Configuring upstream repository](./assets/contributing-02-configuring-upstream.gif)
 
 #### Submitting your work for review
-Once you have run the appropriate build and test commands as well as done a personal review of your work. You can create a new pull request for review by the team.
+First, run the appropriate build and test commands as well as done a personal review of your work. Then you can create a new pull request for review by the team.
 
 Navigate to your fork on github `https://github.com/{YOUR_USERNAME}/AndcultureCode.{REPOSITORY_NAME}/pulls` and click to create a new pull request.
 
