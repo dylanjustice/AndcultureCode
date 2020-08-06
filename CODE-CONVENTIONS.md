@@ -16,6 +16,37 @@ We try our best to leverage prettier to handle auto-formatting. Check out the [.
 
 Using a [git pre-commit hook](.githooks/pre-commit) we ensure prettier is run on the entire source tree before being commited into source control.
 
+### Organization
+
+When organizing a given file, we try to use these general rules of thumb
+
+#### Alphabetization
+
+-   Properties, fields and members on interfaces, classes, and objects **within a given region**
+-   Methods by name within a region
+    -   This is less important for test methods/names within a region, so long as the region is alphabetically placed
+-   Constructor params
+-   Assignments within a constructor
+-   Named parameters in function calls (not necessarily on the signature itself)
+-   Error keys in localization files
+-   Some common examples include:
+
+**Common Examples**
+
+-   AclStrings
+-   DBSets in a Context, IContext
+-   IServiceCollectionExtensions DI registrations
+-   MappingProfile entries
+-   Props for rendering a JSX Element/component
+
+Regions themselves whenever a pre-established order does not exist
+
+#### Regions
+
+We like to wrap our logical types of actors in a file within comment regions. Along with allowing editors to collapse groups of code, it more so makes the file easier to read.
+
+Being each language and tech stack can have their own respective actors, look to each language's code convention file for their order to regions.
+
 ---
 
 ## Language Specific
