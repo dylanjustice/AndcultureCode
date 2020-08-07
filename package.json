@@ -1,0 +1,18 @@
+{
+    "author": "andculture",
+    "dependencies": {},
+    "description": "Documentation of organization engineering best practices",
+    "devDependencies": {
+        "and-cli": "1.0.3",
+        "prettier": "1.19.1"
+    },
+    "homepage": "https://github.com/AndcultureCode/AndcultureCode#readme",
+    "license": "ISC",
+    "main": "npx and-cli",
+    "name": "andculturecode",
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:AndcultureCode/AndcultureCode.git"
+    },
+    "version": "1.0.0"
+}
