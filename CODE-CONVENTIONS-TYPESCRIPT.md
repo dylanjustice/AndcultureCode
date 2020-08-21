@@ -36,3 +36,77 @@ public someMethod() {}
     6. Protected methods
     7. Private methods
 6. Exports
+
+## Exports
+
+For exporting functions, objects, classes, etc., we prefer named export syntax vs. default exports.
+There are a few benefits of named exports over default exports:
+
+1. Ability to export multiple actors from a single file (for example, an interface for a component's
+   props as well as the component itself).
+
+    ```TS
+    // -----------------------------------------------------------------------------------------
+    // #region Interfaces
+    // -----------------------------------------------------------------------------------------
+
+    interface ButtonProps {
+        // disabled, id, onClick, etc. props here...
+    }
+
+    // #endregion Interfaces
+
+    // -----------------------------------------------------------------------------------------
+    // #region Component
+    // -----------------------------------------------------------------------------------------
+
+    const Button = () => {
+        return (<button />);
+    };
+
+    // #endregion Component
+
+    // -----------------------------------------------------------------------------------------
+    // #region Exports
+    // -----------------------------------------------------------------------------------------
+
+    // Newer versions of TypeScript require the `type` keyword before interfaces if not exporting in-line
+    export type { ButtonProps };
+    export { Button };
+
+    // #endregion Exports
+    ```
+
+2. Enforced naming when imported unless explicitly aliased
+
+    ```TS
+    // Some other file...
+    import { Button } from "../button";
+    import { Anchor as AndcultureCodeAnchor } from "andculturecode-javascript-react-components";
+    ```
+
+    - With default exports, the name given during the export can be completely ignored:
+
+    ```TS
+    // Same component as above, except with a default export
+    export default Button;
+    ```
+
+    ```TSX
+    // Some other file...
+    import notAButton from "../button";
+    ```
+
+3. Consistency - it's generally easier to read and understand where things are coming from when all
+   of the imports are named and aliased when appropriate.
+
+    ```TS
+    import { Button } from "../button";
+    import { Anchor } from "andculturecode-javascript-react-components";
+    import {
+        CoreUtils as AndcultureCodeCoreUtils,
+        CollectionUtils,
+        RouteUtils,
+    } from "andculturecode-javascript-core";
+    import { CoreUtils } from "../utilities/core-utils";
+    ```
