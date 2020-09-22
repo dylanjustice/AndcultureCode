@@ -12,7 +12,7 @@ Regardless of the repository's technical details for building a release build, t
     - Create new release build using technology specific steps (see below)
     - Publish new version to respective registry (ie. npm, nuget, etc...) (see below)
     - Commit any build artifacts in git (`git commit -m "Rev'd to version 0.0.x"`)
-    - Push to master!
+    - Push to main!
     - Comment in closed PR threads an update with the newly published version.
 
 2. New release in github
