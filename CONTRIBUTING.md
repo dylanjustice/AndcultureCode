@@ -26,13 +26,15 @@ $: git remote add upstream git://github.com/AndcultureCode/AndcultureCode.{REPOS
 $: git remote -v
 ```
 
-From there you should regularly update `upstream/master` and merge into your branches
+From there you should regularly update `upstream/main` and merge into your branches
 
 ```bash
 $: git fetch upstream
-$: git checkout master
-$: git merge upstream/master
+$: git checkout main
+$: git merge upstream/main
 ```
+
+Note: Check the specific repo to ensure that `main` is the default branch.
 
 ![Configuring upstream repository](./assets/contributing-02-configuring-upstream.gif)
 
