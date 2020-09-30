@@ -104,16 +104,16 @@ Assumes you've updated your respective project `.csproj` files with the necessar
 #### Add slack build notifications
 
 * Log into management section of slack `https://{organization}.slack.com/apps/manage`
-* Install/Update Travis CI app integration
-* Click 'Add Configuration'
-* Select your desired slack channel
-* Copy the generated slack token for next steps
+* If it doesn't exist already, install the Travis CI app integration
+    * Click 'Add Configuration'
+    * Select your desired slack channel
+* Copy the generated slack token from the Travic CI app integration for the next steps
 * Install travis cli client on your machine (if not already)
     * Ensure ruby 1.9.3+ is installed
     * `$: gem install travis --no-rdoc --no-ri`
 * Use the travis cli to generate a secure token
     * Reference [travis documentation](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications) if you run into any issues
     * Change directory (cd) to your repository (where the `.travis.yml` is located)
-    * `$: travis encrypt "{organization}:{slack-token}" --add notifications.slack.rooms`
+    * `$: travis encrypt "{organization}:{slack-token}" --add notifications.slack.rooms` (note: should be the 'slack' organization, not 'github')
     * This should automatically update the travis configuration with a secure token
 * For more information refer to [travis-ci documentation](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications)
