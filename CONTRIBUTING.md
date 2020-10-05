@@ -44,7 +44,7 @@ The easiest way to get started contributing is to install the [AndcultureCode CL
 
 3. Follow interactive prompts to configure github authentication, sit back and wait :)
 
-4. Now, simply make changes to the desired project (ie. `[YOUR_GITHUB_USERNAME].AndcultureCode`), make changes and start submitting pull requests. Thank you for contributing!
+4. Now, simply make changes to the desired project (ie. `[YOUR_GITHUB_USERNAME].AndcultureCode`) and start submitting pull requests. Thank you for contributing!
 
 ##### Manually
 
