@@ -1,7 +1,7 @@
 Setting up a new repository
 ======
 
-Below is a quick checklist to use a guide when setting up a new repository to share on github for use publically.
+Below is a quick checklist to use a guide when setting up a new repository to share on github for use publicly.
 
 Note: This differs from our setup of repositories privately for our clients.
 
