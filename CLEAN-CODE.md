@@ -1,6 +1,8 @@
-# Clean Code by Robert C. Martin
+# Clean Code
 
-## Chapter 2: Meaningful Names
+These are Andculture's code standards based on Robert Martin's _Clean Code_.
+
+## Meaningful Names
 
 ### Make Meaningful Distinctions
 
@@ -20,7 +22,7 @@ differentiate similar names. Examples of noise words:
 Instead of using words like these, add context to the names. A single name may not be incorrect, but
 when existing alongside similar names, it becomes a problem.
 
-| Bad:                                           | Good:                                                        |
+| Bad                                            | Good                                                         |
 | ---------------------------------------------- | ------------------------------------------------------------ |
 | Product<br>ProductData<br>ProductInfo          | ProductDetail<br>ProductListItem<br>HomePageProduct          |
 | GetActiveAccount()<br>GetActiveAccountRecord() | GetActiveAccountFullDetails()<br>GetActiveAccountForHeader() |
@@ -34,12 +36,3 @@ why they are different than the other similar objects.
 | Bad                                                         | Good                                                                         |
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | let user1 = null;<br>let user2 = null;<br>let user3 = null; | let studentUser = null;<br>let parentUser = null;<br>let teacherUser = null; |
-
-#### Allowed Names
-
-There are some naming conventions that we will continue to allow. We decided that we do not have a
-problem with both singular and plural calls in a single class.
-
-| Okay:                         |
-| ----------------------------- |
-| GetAccount()<br>GetAccounts() |
