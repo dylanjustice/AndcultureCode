@@ -63,12 +63,14 @@ public class ChaptersController : ApiController
     #region Constructor
 
     public ChaptersController(
+        /* The "chapter" prefix here is redundant due to the context of being in the `ChaptersController` */
         IRepositoryReadConductor<Chapter> chapterReadConductor,
         IStringLocalizer localizer,
         ILogger<ChaptersController> logger,
         IMapper mapper
     ) : base(localizer)
     {
+        // The "chapter" prefix here is redundant due to the context of being in the `ChaptersController`
         _chapterReadConductor = chapterReadConductor;
         _logger = logger;
         _mapper = mapper;
@@ -102,11 +104,13 @@ public class ChaptersController : ApiController
         IStringLocalizer localizer,
         ILogger<ChaptersController> logger,
         IMapper mapper,
+        /* Since the entity for this conductor is our primary entity in this controller, we don't need to prefix it with "chapter" */
         IRepositoryReadConductor<Chapter> readConductor,
     ) : base(localizer)
     {
         _logger = logger;
         _mapper = mapper;
+        // Since the entity for this conductor is our primary entity in this controller, we don't need to prefix it with "chapter"
         _readConductor = readConductor;
     }
 
@@ -141,12 +145,14 @@ public class ChaptersController : ApiController
         IStringLocalizer localizer,
         ILogger<ChaptersController> logger,
         IMapper mapper,
+        /* Since this entity now differs from our primary entity `Chapter`, we will make the distinction in the name. */
         IRepositoryReadConductor<Publication> publicationReadConductor,
         IRepositoryReadConductor<Chapter> readConductor,
     ) : base(localizer)
     {
         _logger = logger;
         _mapper = mapper;
+        // Since this entity now differs from our primary entity `Chapter`, we will make the distinction in the name.
         _publicationReadConductor = publicationReadConductor;
         _readConductor = readConductor;
     }
