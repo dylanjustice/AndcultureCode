@@ -162,3 +162,28 @@ public class ChaptersController : ApiController
     // Get, Index, etc. controller methods here
 }
 ```
+
+### Class Names
+
+Class names should be nouns, not verbs. In addition, keep in mind the prior section on avoiding
+noise words (Info, Data, etc). For example:
+
+| Class Name           |
+| -------------------- |
+| CourseCloneConductor |
+| UrlsPlugin           |
+| Product              |
+
+### Method Names
+
+Method names should be verbs or verb phrases indicating the work they are doing. Remember, you don't
+need to add unnecessary context when naming a method -- if you have a class called `Product` and a
+method to initialize some properties, you may be tempted to call the method `InitializeProduct`.
+However, a better name might simply be `Initialize` because based on the context of the class in which
+the method exists, you are already indicating that the thing being initialized is a product. For example:
+
+| Bad Method Name                    | Good Method Name             |
+| ---------------------------------- | ---------------------------- |
+| CourseCloneConductor.CloneCourse() | CourseCloneConductor.Clone() |
+| UrlsPlugin.InitializeUrls()        | UrlsPlugin.Initialize()      |
+| Product.DisposeProduct()           | Product.Dispose()            |
