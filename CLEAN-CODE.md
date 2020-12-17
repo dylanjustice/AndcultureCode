@@ -162,3 +162,23 @@ public class ChaptersController : ApiController
     // Get, Index, etc. controller methods here
 }
 ```
+
+### Use One Word Per Concept
+
+There are many ways to say the same thing! Avoid using all of them, and instead use one and only one throughout the codebase.
+
+By this, we mean to say that each unique abstract concept should use the same word to describe itself, to reduce confusion and uncertainty when reading/writing code.
+
+Below are two example interfaces... one follows this suggestion and the other doesn't. It's clear which is more consistent and less confusing.
+
+| Bad                           | Good                       |
+| ----------------------------- | -------------------------- |
+| int         GetUserId()       | int         GetUserId()    |
+| string      ReadUserName      | string      GetUserName    |
+| UserAddress FetchUserAddress  | UserAddress GetUserAddress |
+
+In the Bad example, what would the difference between `Read`. `Get`, and `Fetch` be? Likely nothing, and one of these terms would suffice to describe the same concept.
+
+Additionally, avoid using different names to describe similar patterns. In our codebase it is likely you'll see the `Conductor` pattern being used, but in other code bases you may see `Service` or `Manager`.
+
+The terminology used to describe these patterns should be as consistent as possible. Consult team leads/senior team members for the "correct" pattern name you should use if you're unsure!
