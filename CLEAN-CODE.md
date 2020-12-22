@@ -163,6 +163,30 @@ public class ChaptersController : ApiController
 }
 ```
 
+### Avoid Encodings
+
+While adding encoded details to a name, such as type and scope, were needed in the past, the combination of C# being a strongly typed language as well as having powerful IDE support has made this an obsolete requirement. Besides it no longer being needed for languages such as C#, there are a few other reasons that encoding names should be avoided. First, it adds an unneeded burden on the reader of the code. Secondly, adding endoded information to a name introduces the potential to mislead a reader if a name or type are ever refactored in a way that they no longer are true or align.
+
+Here are some examples:
+
+#### ❌ **BAD**
+
+```cs
+string[] nameArray;
+List<string> nameList;
+int intAge;
+string addressString;
+```
+
+#### ✅ **GOOD**
+
+```cs
+string[] names;
+List<string> names;
+int age;
+string address;
+```
+
 ### Class Names
 
 Class names should be nouns, not verbs. In addition, keep in mind the prior section on avoiding
