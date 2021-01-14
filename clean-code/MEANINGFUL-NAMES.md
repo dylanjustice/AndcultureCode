@@ -4,9 +4,11 @@ Simple rules for creating good names.
 
 [Table of Contents](../CLEAN-CODE.md)
 
-## Make Meaningful Distinctions
+## Meaningful Names
 
-### Avoid Noise Words
+### Make Meaningful Distinctions
+
+#### Avoid Noise Words
 
 Noise words are words that don't provide additional information, aren't known patterns used in
 software, and are often added to differentiate similar names. Examples of noise words:
@@ -26,7 +28,7 @@ when existing alongside similar names, it becomes a problem.
 | Product<br>ProductData<br>ProductInfo          | ProductDetail<br>ProductListItem<br>HomePageProduct          |
 | GetActiveAccount()<br>GetActiveAccountRecord() | GetActiveAccountFullDetails()<br>GetActiveAccountForHeader() |
 
-### Names Should have Meaningful Distinctions
+#### Names Should have Meaningful Distinctions
 
 Being able to differentiate classes, methods or variables isn't enough, they should have meaningful
 distinctions. This means that we shouldn't just iterate a number over items. The names should show
@@ -40,7 +42,7 @@ to be read, they could be unnamed and initiated within an array.
 | let product1 = null;<br>let product2 = null;                                                                                                       | let expectedProduct = null;<br>let unexpectedProduct = null;                                                                                                                  |
 | let expectedWidget = create(1);<br>let unexpectedWidget2 = create(2);<br>let unexpectedWidget3 = create(3);<br> let unexpectedWidget4 = create(4); | let expectedWidget = create(1);<br>const options = [ expectedWidget, create(2), create(3), create(4) ];<br>/\* assert on results length rather than not having unexpected \*/ |
 
-## Don't Add Gratuitous Context
+### Don't Add Gratuitous Context
 
 When a variable name can be inferred from the context of the class, interface or other actor you're in, prefixing the variable with the additional context adds no value. Extra context should only be added for actors that differ from the domain/context.
 
@@ -120,7 +122,7 @@ public class ChaptersController : ApiController
 }
 ```
 
-## Add Meaningful Context
+### Add Meaningful Context
 
 Of course, when there are additional actors that do not directly relate to the domain entity, it then becomes appropriate to make the distinction:
 
@@ -163,7 +165,20 @@ public class ChaptersController : ApiController
 }
 ```
 
-## Class Names
+### Avoid Encodings
+
+While adding encoded details to a name such as type and scope were needed in the past, the combination of C# being a strongly typed language as well as having powerful IDE support has made this an obsolete requirement. Besides it no longer being needed for languages such as C#, there are a few other reasons that encoding names should be avoided. First, it adds an unneeded burden on the reader of the code. Secondly, adding endoded information to a name introduces the potential to mislead a reader if a name or type are ever refactored in a way that they no longer are true or align.
+
+Here are some examples:
+
+| Bad Names              | Good Names          |
+| ---------------------- | ------------------- |
+| string[] nameArray;    | string[] names;     |
+| List<string> nameList; | List<string> names; |
+| int intAge;            | int age;            |
+| string addressString;  | string address;     |
+
+### Class Names
 
 Class names should be nouns, not verbs. In addition, keep in mind the prior section on avoiding
 noise words (Info, Data, etc). For example:
@@ -174,7 +189,7 @@ noise words (Info, Data, etc). For example:
 | UrlsPlugin           |
 | Product              |
 
-## Method Names
+### Method Names
 
 Method names should be verbs or verb phrases indicating the work they are doing. Remember, you don't
 need to add unnecessary context when naming a method -- if you have a class called `Product` and a
@@ -187,3 +202,23 @@ the method exists, you are already indicating that the thing being initialized i
 | CourseCloneConductor.CloneCourse() | CourseCloneConductor.Clone() |
 | UrlsPlugin.InitializeUrls()        | UrlsPlugin.Initialize()      |
 | Product.DisposeProduct()           | Product.Dispose()            |
+
+### Use One Word Per Concept
+
+There are many ways to say the same thing! Avoid using all of them, and instead use one and only one throughout the codebase.
+
+By this, we mean to say that each unique abstract concept should use the same word to describe itself, to reduce confusion and uncertainty when reading/writing code.
+
+Below are two example interfaces... one follows this suggestion and the other doesn't. It's clear which is more consistent and less confusing.
+
+| Bad                          | Good                       |
+| ---------------------------- | -------------------------- |
+| int GetUserId()              | int GetUserId()            |
+| string ReadUserName          | string GetUserName         |
+| UserAddress FetchUserAddress | UserAddress GetUserAddress |
+
+In the Bad example, what would the difference between `Read`. `Get`, and `Fetch` be? Likely nothing, and one of these terms would suffice to describe the same concept.
+
+Additionally, avoid using different names to describe similar patterns. In our codebase it is likely you'll see the `Conductor` pattern being used, but in other code bases you may see `Service` or `Manager`.
+
+The terminology used to describe these patterns should be as consistent as possible. Consult team leads/senior team members for the "correct" pattern name you should use if you're unsure!
