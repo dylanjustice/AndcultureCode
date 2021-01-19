@@ -40,11 +40,7 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## Function arguments
 
--   [TODO: Issue #38 - Book Club: Document our use of "Clean Code: Functions - Function arguments"](https://github.com/AndcultureCode/AndcultureCode/issues/38)
--   largely agree with goal to use options bags more (4 around), but hard fast rule
--   function and arguments create verb-noun pair
-
-While an _ideal_ numer of function arguments is zero (0), it's more often necessary to encapsulate a small amount of decision making into a function.
+While an _ideal_ number of function arguments is zero (0), it's more often necessary to encapsulate some amount of decision making into a function.
 Keeping the function small (See [Small!](#Small!)) as well as making functions flexible enought to provide clear value in a handful of situations is preferable over creating hyper-specific functions in hopes of targeting a single outcome. Remember your audience, if the reader cannot make sense of the function given the arguments, it's likely a candidate for refactoring.
 
 When functions approach four (4) arguments, consider using an argument object or an options bag. The goal of this refactor is to group like arguments into concepts of their own, and/or increase clarity for the consumer.
@@ -62,8 +58,7 @@ export default function useMyBookmarks(
     loadSections: boolean = true,
     loadPublications: boolean = true,
     loadCollections: boolean = true,
-    loadUsers: boolean = true,
-    onLoadError: () => void = defaultErrorHandler
+    loadUsers: boolean = true
 ) { ... }
 
 // After
@@ -85,9 +80,7 @@ export interface UserBookmarkIncludeProperties {
 export default function useMyBookmarks(
     apiParams: UserBookmarkIndexParams,
     includeProperties: UserBookmarkIncludeProperties,
-    onLoadError: () => void = defaultErrorHandler
 ) {...}
-
 
 ```
 
