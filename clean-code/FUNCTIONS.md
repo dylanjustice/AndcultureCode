@@ -40,9 +40,57 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## Function arguments
 
--   [TODO: Issue #38 - Book Club: Document our use of "Clean Code: Functions - Function arguments"](https://github.com/AndcultureCode/AndcultureCode/issues/38)
--   largely agree with goal to use options bags more (4 around), but hard fast rule
--   function and arguments create verb-noun pair
+While an _ideal_ number of function arguments is zero (0), it's more often necessary to encapsulate some amount of decision making into a function.
+Keeping the function small (See [Small!](#Small!)) as well as making functions flexible enought to provide clear value in a handful of situations is preferable over creating hyper-specific functions in hopes of targeting a single outcome. Remember your audience, if the reader cannot make sense of the function given the arguments, it's likely a candidate for refactoring.
+
+When functions have four or more arguments, consider using an argument object or an options bag. The goal of this refactor is to group like arguments into concepts of their own, and/or increase clarity for the consumer.
+
+```TypeScript
+// Before
+export default function useMyBookmarks(
+    collectionId: number | undefined = undefined,
+    searchText: string | undefined = undefined,
+    colors: Array<UserBookmarkColors> | undefined = undefined,
+    filterByCurrentUser: boolean = false,
+    sortBy: UserBookmarkSortOption | undefined = undefined,
+    skip: number | undefined = undefined,
+    take: number | undefined = undefined,
+    loadSections: boolean = true,
+    loadPublications: boolean = true,
+    loadCollections: boolean = true,
+    loadUsers: boolean = true
+) { ... }
+
+// After
+export interface UserBookmarkIndexParams {
+    collectionId?: number,
+    searchText?: string,
+    sortBy?: userBookmarkSortOption,
+    skip?: number,
+    take?: number
+}
+
+export interface UserBookmarkIncludeProperties {
+    sections: boolean,
+    publications: boolean,
+    collections: boolean,
+    users: boolean
+}
+
+export default function useMyBookmarks(
+    apiParams: UserBookmarkIndexParams,
+    includeProperties: UserBookmarkIncludeProperties,
+) { ... }
+
+```
+
+When naming arguments, choose names that create a verb-noun pair between the function and the argument. The function should be a name reflecting a verb, and the arguments a noun.
+
+```TypeScript
+function writeField(name: string) { ... }
+
+function assertExpectedEqualsActual(expected: any, actual: any) { ... }
+```
 
 ## Have no side effects
 
