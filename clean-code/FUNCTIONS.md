@@ -33,10 +33,35 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## Use descriptive names
 
--   [TODO: Issue #37 - Book Club: Document our use of "Clean Code: Functions - Use descriptive names"](https://github.com/AndcultureCode/AndcultureCode/issues/37)
--   spend time choosing a name
--   long names are okay, when married with other naming concepts
--   use context when appropriate
+Creating a function name may seem easy, but take the time to make it clear and descriptive of what the function does.
+Try different options and make sure that the name matches what is happening.
+
+### Long Names
+
+A more focused functions could have a small name, but do not be afraid of writing long names.
+A long descriptive name is better than a long descriptive comment.
+
+Before:
+
+```TypeScript
+// Queries authors list and sets the values in the dropdown
+public setAuthors()
+```
+
+After:
+
+```TypeScript
+// Queries authors list and sets the values in the dropdown
+public populateAuthorsDropdown()
+```
+
+### Multi-Word Names
+
+Multi-word naming conventions allow the functions to be descriptive, but they also make them readable.
+
+| Bad                                                                       | Good                                                                     |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| GetApprovedAuthors()<br>ListAuthorizedBooks()<br>ReadApprovedPublishers() | ListApprovedAuthors()<br>ListApprovedBooks()<br>ListApprovedPublishers() |
 
 ## Function arguments
 
