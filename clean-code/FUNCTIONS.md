@@ -68,7 +68,12 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## How Do You Write Functions Like This?
 
--   [TODO: Issue #43 - Book Club: Document our use of "Clean Code: Functions - How Do You Write Functions Like This?"](https://github.com/AndcultureCode/AndcultureCode/issues/43)
--   unless absolutely necessary, try to do first pass refactor (per rules above)
--   review your own “PR/commit”
--   try your best to pair up on a second pass from varied audience (ideally different team)
+No code should ever be considered complete or unchangeable. The goal is to make code easy to digest and maintain for future readers (ourselves included).
+
+When creating new functions, getting it "working" is just the first step. Before committing a new changeset, engineers should take time, even if only ten minutes, to review their work and apply concepts outlined in this and other clean code documentation while it is fresh in your mind.
+
+Pair programming with another engineer on your team is even better! Ideally getting a review from engineer(s) that aren't on your project team.
+
+In the event you do not have time to perform an initial refactoring, an issue/task should be created in the respective project management tool and left in a comment on the file(s)/functions/etc...
+
+No matter what, you _must_ take the time to re-read your changeset top-to-bottom and ensure there aren't any glaring issues before committing it to the codebase. If you feel there isn't enough time for even this step, please discuss how you can get more time to prioritize this important step with your managers.
