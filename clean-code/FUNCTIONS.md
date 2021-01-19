@@ -43,7 +43,7 @@ Functions are the first line of organization in any program. Lets prioritize wri
 While an _ideal_ number of function arguments is zero (0), it's more often necessary to encapsulate some amount of decision making into a function.
 Keeping the function small (See [Small!](#Small!)) as well as making functions flexible enought to provide clear value in a handful of situations is preferable over creating hyper-specific functions in hopes of targeting a single outcome. Remember your audience, if the reader cannot make sense of the function given the arguments, it's likely a candidate for refactoring.
 
-When functions approach four (4) arguments, consider using an argument object or an options bag. The goal of this refactor is to group like arguments into concepts of their own, and/or increase clarity for the consumer.
+When functions have four or more arguments, consider using an argument object or an options bag. The goal of this refactor is to group like arguments into concepts of their own, and/or increase clarity for the consumer.
 
 ```TypeScript
 // Before
@@ -80,14 +80,16 @@ export interface UserBookmarkIncludeProperties {
 export default function useMyBookmarks(
     apiParams: UserBookmarkIndexParams,
     includeProperties: UserBookmarkIncludeProperties,
-) {...}
+) { ... }
 
 ```
 
 When naming arguments, choose names that create a verb-noun pair between the function and the argument. The function should be a name reflecting a verb, and the arguments a noun.
 
 ```TypeScript
-function assertExpectedEqualsActual(expected: any, actual: any)
+function writeField(name: string) { ... }
+
+function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 ```
 
 ## Have no side effects
