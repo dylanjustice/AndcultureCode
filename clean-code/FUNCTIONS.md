@@ -38,7 +38,7 @@ Try different options and make sure that the name matches what is happening.
 
 ### Long Names
 
-A more focused functions could have a small name, but do not be afraid of writing long names.
+A more focused function could have a small name, but do not be afraid of writing long names.
 A long descriptive name is better than a long descriptive comment.
 
 Before:
@@ -55,9 +55,10 @@ After:
 public populateAuthorsDropdown()
 ```
 
-### Multi-Word Names
+### Consistent Naming
 
-Multi-word naming conventions allow the functions to be descriptive, but they also make them readable.
+When you consistently use the same descriptive words in function names the code is more readable while still providing additional information.
+Naming conventions also help to tell a story and may even help to reveal missing functionality.
 
 | Bad                                                                       | Good                                                                     |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
