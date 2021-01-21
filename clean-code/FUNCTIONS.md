@@ -35,6 +35,7 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 Creating a function name may seem easy, but take the time to make it clear and descriptive of what the function does.
 Try different options and make sure that the name matches what is happening.
+An additional benefit of using descriptive names is that it helps to point out when functions are breaking the single-responsibility principle and need refactored.
 
 ### Long Names
 
@@ -55,10 +56,12 @@ After:
 public populateAuthorsDropdown()
 ```
 
-### Consistent Naming
+### Consistent Multi-Word Naming
 
-When you consistently use the same descriptive words in function names the code is more readable while still providing additional information.
-Naming conventions also help to tell a story and may even help to reveal missing functionality.
+When you consistently use the same descriptive words in function names the code is more readable, while still providing details about the functionality.
+
+Below we consolidate the "GetApproved", "ListAuthorized" and "ReadApproved" prefixes, which are all saying the same thing, into "ListApproved".
+This naming convention helps to tell a story, and may even help to reveal missing functionality or misnamed functions. For example, we are expecting to see "ListApprovedBookSeries".
 
 | Bad                                                                       | Good                                                                     |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
