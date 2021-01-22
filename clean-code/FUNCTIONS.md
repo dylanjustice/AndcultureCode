@@ -33,10 +33,39 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## Use descriptive names
 
--   [TODO: Issue #37 - Book Club: Document our use of "Clean Code: Functions - Use descriptive names"](https://github.com/AndcultureCode/AndcultureCode/issues/37)
--   spend time choosing a name
--   long names are okay, when married with other naming concepts
--   use context when appropriate
+Creating a function name may seem easy, but take the time to make it clear and descriptive of what the function does.
+Try different options and make sure that the name matches what is happening.
+An additional benefit of using descriptive names is that it helps to point out when functions are breaking the single-responsibility principle and need refactored.
+
+### Long Names
+
+A more focused function could have a small name, but do not be afraid of writing long names.
+A long descriptive name is better than a long descriptive comment.
+
+Before:
+
+```TypeScript
+// Queries authors list and sets the values in the dropdown
+public setAuthors()
+```
+
+After:
+
+```TypeScript
+// Queries authors list and sets the values in the dropdown
+public populateAuthorsDropdown()
+```
+
+### Consistent Multi-Word Naming
+
+When you consistently use the same descriptive words in function names the code is more readable, while still providing details about the functionality.
+
+Below we consolidate the "GetApproved", "ListAuthorized" and "ReadApproved" prefixes, which are all saying the same thing, into "ListApproved".
+This naming convention helps to tell a story, and may even help to reveal missing functionality or misnamed functions. For example, we are expecting to see "ListApprovedBookSeries".
+
+| Bad                                                                       | Good                                                                     |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| GetApprovedAuthors()<br>ListAuthorizedBooks()<br>ReadApprovedPublishers() | ListApprovedAuthors()<br>ListApprovedBooks()<br>ListApprovedPublishers() |
 
 ## Function arguments
 
