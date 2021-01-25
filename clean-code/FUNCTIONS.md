@@ -19,8 +19,7 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## One level of abstraction per function
 
--   [TODO: Issue #35 - Book Club: Document our use of "Clean Code: Functions - One level of abstraction per function"](https://github.com/AndcultureCode/AndcultureCode/issues/35)
--   agree and perhaps mention it in documentation with example being it isn’t something many are thinking about
+While many of us are not actively thinking about the varying level of abstraction within a single function we're writing, it can play a large part in how easily the function can be digested by a reader. Try to be mindful to stay around the same level of abstraction and avoid mixing high-level concepts with low-level details.
 
 ## Switch statements
 
