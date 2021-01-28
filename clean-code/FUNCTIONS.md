@@ -135,9 +135,11 @@ function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 ## Prefer Exceptions to Returning Error Codes
 
 When there is an exception, **do not** catch it and return an error code.
-This causes a problem for that caller, because they must immediately deal with the error, even if they may not be the appropriate place to handle it. This approach is largely antiquated.
+This causes a problem for the caller, because they must immediately deal with the error even if they are not be the appropriate place to handle it. This approach is largely antiquated.
 
 ```TypeScript
+// Do not return error codes
+
 public File CreateEmptyFile() {
     var result = CreateFile(new File(...));
     if (result == CreateResponse.Success) {
@@ -163,6 +165,8 @@ It is **unnecessary** to split the try and logic code into separate functions.
 While this does separate the code into two different things (creating file and handling exceptions), it is not necessary when we use shared error handling.
 
 ```TypeScript
+// Do not split catching and functionality
+
 public File CreateEmptyFile() {
     return CreateFile(new File(...))
 }
@@ -186,6 +190,8 @@ We should also use shared "catching" code (such as `Do/Try`) that handles the ex
 In this case `CreateEmptyFile()` should allow the exception to continue bubbling up, while `PopulateEmptyFile()` could catch and handle the exception.
 
 ```TypeScript
+// Allow errors to bubble up to shared catch code
+
 public IResult<File> PopulateEmptyFile() => Do<File>.Try((r) =>
     var file = CreateEmptyFile();
     // populate functionality
