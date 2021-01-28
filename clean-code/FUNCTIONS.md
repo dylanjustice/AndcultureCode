@@ -132,11 +132,73 @@ function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 -   [TODO: Issue #40 - Book Club: Document our use of "Clean Code: Functions - Command Query Separation"](https://github.com/AndcultureCode/AndcultureCode/issues/40)
 -   do something OR answer something (NOT BOTH)
 
-## Prefer exceptions to returning error codes
+## Prefer Exceptions to Returning Error Codes
 
--   [TODO: Issue #41 - Book Club: Document our use of "Clean Code: Functions - Prefer exceptions to returning error codes"](https://github.com/AndcultureCode/AndcultureCode/issues/41)
--   largely antiquated
--   extracting the “try” portion is too far, but understand shared “catches”
+When there is an exception, **do not** catch it and return an error code.
+This causes a problem for that caller, because they must immediately deal with the error, even if they may not be the appropriate place to handle it. This approach is largely antiquated.
+
+```TypeScript
+public File CreateEmptyFile() {
+    var result = CreateFile(new File(...));
+    if (result == CreateResponse.Success) {
+        // success case
+    } else {
+        // handle multiple failure cases
+    }
+}
+
+public CreateResponse CreateFile(File file) {
+    try {
+        _file = ...; // code to create file, which could cause an exception
+        return CreateResponse.Success;
+    } catch (AccessException ex) {
+        return CreateResponse.AccessIssues;
+    } catch (Exception ex) {
+        return CreateResponse.Exception;
+    }
+}
+```
+
+It is **unnecessary** to split the try and logic code into separate functions.
+While this does separate the code into two different things (creating file and handling exceptions), it is not necessary when we use shared error handling.
+
+```TypeScript
+public File CreateEmptyFile() {
+    return CreateFile(new File(...))
+}
+
+public File CreateFile(File file) {
+    try {
+        return _createFile(file);
+    } catch (Exception ex) {
+        LogException(ex);
+        return null;
+    }
+}
+
+private File _createFile(File file) {
+    // code to create file, which could cause an exception
+}
+```
+
+You **should** write happy path code that allows exceptions to bubble up to the appropriate level.
+We should also use shared "catching" code (such as `Do/Try`) that handles the exceptions consistently.
+In this case `CreateEmptyFile()` should allow the exception to continue bubbling up, while `PopulateEmptyFile()` could catch and handle the exception.
+
+```TypeScript
+public IResult<File> PopulateEmptyFile() => Do<File>.Try((r) =>
+    var file = CreateEmptyFile();
+    // populate functionality
+}).Result;
+
+public File CreateEmptyFile() {
+    return _createFile(new File(...))
+}
+
+public File _createFile(File file) {
+    // code to create file, which could cause an exception
+}
+```
 
 ## Structured Programming
 
