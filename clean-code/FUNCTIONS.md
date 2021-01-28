@@ -21,6 +21,85 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 While many of us are not actively thinking about the varying level of abstraction within a single function we're writing, it can play a large part in how easily the function can be digested by a reader. Try to be mindful to stay around the same level of abstraction and avoid mixing high-level concepts with low-level details.
 
+In the following example, an API controller's `Create` action is handling both the creation of an external user as well as the local user entity. While this isn't inherently an issue, the levels of abstraction are vastly different and it makes the function harder to follow.
+
+```CS
+[HttpPost]
+public IActionResult Create([FromBody] UserDto dto)
+{
+    // Low level abstraction - directly interacting with a REST Client/external API and handling response
+    var request = new RestRequest();
+    request.AddJsonBody(JsonConvert.SerializeObject(dto));
+
+    var response = _restClient.Post(request);
+    if (response == null || response.ErrorException != null)
+    {
+        r.AddErrorAndLog(_logger, _localizer, ERROR_EXTERNAL_SERVICE_UNRESPONSIVE);
+        return null;
+    }
+
+    var externalUserDto = JsonConvert.DeserializeObject<Response<ExternalUserDto>>(
+        response.Content,
+        new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }
+    );
+
+    var user = new User
+    {
+        ExternalId = externalUserDto.Id,
+        FirstName = dto.FirstName,
+        IsEnabled = dto.IsEnabled,
+        IsSuperAdmin = dto.IsSuperAdmin,
+        LastName = dto.LastName,
+        Username = dto.Username,
+    };
+
+    // High level abstraction - persistence of a domain entity using a repository
+    var createResult = _createConductor.Create(user, dto.Password);
+    if (createResult.HasErrors)
+    {
+        return InternalError<UserDto>(createResult.Errors);
+    }
+
+    return Created(createResult.ResultObject);
+}
+```
+
+A better way to handle this would be abstracting the external user creation into a provider class, which can know about the low-level details of hitting the external API and handling the response.
+
+```CS
+[HttpPost]
+public IActionResult Create([FromBody] UserDto dto)
+{
+    // High level abstraction - interaction with an external service is wrapped in a provider
+    var externalUserResult = _externalProvider.Create(dto);
+    if (externalUserResult.HasErrors)
+    {
+        return InternalError<UserDto>(externalUserResult.Errors);
+    }
+
+    var externalUser = externalUserResult.ResultObject;
+
+    var user = new User
+    {
+        ExternalId = externalUserDto.Id,
+        FirstName = dto.FirstName,
+        IsEnabled = dto.IsEnabled,
+        IsSuperAdmin = dto.IsSuperAdmin,
+        LastName = dto.LastName,
+        Username = dto.Username,
+    };
+
+    // High level abstraction - persistence of a domain entity using a repository
+    var createResult = _createConductor.Create(user, dto.Password);
+    if (createResult.HasErrors)
+    {
+        return InternalError<UserDto>(createResult.Errors);
+    }
+
+    return Created(createResult.ResultObject);
+}
+```
+
 ## Switch statements
 
 -   [TODO: Issue #36 - Book Club: Document our use of "Clean Code: Functions - Switch Statements"](https://github.com/AndcultureCode/AndcultureCode/issues/36)
