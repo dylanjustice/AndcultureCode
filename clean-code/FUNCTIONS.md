@@ -145,10 +145,10 @@ function set<T>(key: string, value: T): void {
 Or **Answer** something...
 
 ```TypeScript
-// role-record.ts
+// local-storage-utils.ts
 
 /**
- * Returns whether or not this RoleRecord has a non-null type
+ * Returns whether or not the provided local storage key exists
  */
 public has(key: string): boolean {
     return localStorage.getItem(key) != null;
@@ -158,11 +158,13 @@ public has(key: string): boolean {
 _NOT_ both...
 
 ```TypeScript
+// local-storage-utils.ts
+
 /**
  * Cache key value pair to local storage as strings.
- * Returns value of key if successful or undefined if unsuccessful
+ * Returns true if key successfully set or false if not set
  */
-function set<T>(key: string, value: T): void {
+function set<T>(key: string, value: T): boolean {
     localStorage.setItem(key, JSON.stringify(value));
     return has(key);
 }
