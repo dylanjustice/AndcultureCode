@@ -129,8 +129,46 @@ function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 
 ## Command Query Separation
 
--   [TODO: Issue #40 - Book Club: Document our use of "Clean Code: Functions - Command Query Separation"](https://github.com/AndcultureCode/AndcultureCode/issues/40)
--   do something OR answer something (NOT BOTH)
+**Do** something...
+
+```TypeScript
+// local-storage-utils.ts
+
+/**
+ * Cache key value pair to local storage as strings
+ */
+function set<T>(key: string, value: T): void {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+```
+
+Or **Answer** something...
+
+```TypeScript
+// local-storage-utils.ts
+
+/**
+ * Returns whether or not the provided local storage key exists
+ */
+public has(key: string): boolean {
+    return localStorage.getItem(key) != null;
+}
+```
+
+_NOT_ both...
+
+```TypeScript
+// local-storage-utils.ts
+
+/**
+ * Cache key value pair to local storage as strings.
+ * Returns true if key successfully set or false if not set
+ */
+function set<T>(key: string, value: T): boolean {
+    localStorage.setItem(key, JSON.stringify(value));
+    return has(key);
+}
+```
 
 ## Prefer exceptions to returning error codes
 
