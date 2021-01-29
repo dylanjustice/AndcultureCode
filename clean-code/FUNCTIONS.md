@@ -135,9 +135,9 @@ function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 ## Prefer Exceptions to Returning Error Codes
 
 When there is an exception, **do not** catch it and return an error code.
-This causes a problem for the caller, because they must immediately deal with the error even if they are not be the appropriate place to handle it. This approach is largely antiquated.
+This causes a problem for the caller, because they must immediately deal with the error even if they are not the appropriate place to handle it. This approach is largely antiquated.
 
-```TypeScript
+```CSharp
 // Do not return error codes
 
 public File CreateEmptyFile() {
@@ -151,7 +151,7 @@ public File CreateEmptyFile() {
 
 public CreateResponse CreateFile(File file) {
     try {
-        _file = ...; // code to create file, which could cause an exception
+        FunctionThatThrowsAnException(file);
         return CreateResponse.Success;
     } catch (AccessException ex) {
         return CreateResponse.AccessIssues;
@@ -164,7 +164,7 @@ public CreateResponse CreateFile(File file) {
 It is **unnecessary** to split the try and logic code into separate functions.
 While this does separate the code into two different things (creating file and handling exceptions), it is not necessary when we use shared error handling.
 
-```TypeScript
+```CSharp
 // Do not split catching and functionality
 
 public File CreateEmptyFile() {
@@ -173,15 +173,11 @@ public File CreateEmptyFile() {
 
 public File CreateFile(File file) {
     try {
-        return _createFile(file);
+        return FunctionThatThrowsAnException(file);
     } catch (Exception ex) {
         LogException(ex);
         return null;
     }
-}
-
-private File _createFile(File file) {
-    // code to create file, which could cause an exception
 }
 ```
 
@@ -189,7 +185,7 @@ You **should** write happy path code that allows exceptions to bubble up to the 
 We should also use shared "catching" code (such as `Do/Try`) that handles the exceptions consistently.
 In this case `CreateEmptyFile()` should allow the exception to continue bubbling up, while `PopulateEmptyFile()` could catch and handle the exception.
 
-```TypeScript
+```CSharp
 // Allow errors to bubble up to shared catch code
 
 public IResult<File> PopulateEmptyFile() => Do<File>.Try((r) =>
@@ -198,11 +194,7 @@ public IResult<File> PopulateEmptyFile() => Do<File>.Try((r) =>
 }).Result;
 
 public File CreateEmptyFile() {
-    return _createFile(new File(...))
-}
-
-public File _createFile(File file) {
-    // code to create file, which could cause an exception
+    return FunctionThatThrowsAnException(new File(...))
 }
 ```
 
