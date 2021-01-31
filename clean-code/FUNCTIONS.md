@@ -19,15 +19,18 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## One level of abstraction per function
 
-While many of us are not actively thinking about the varying level of abstraction within a single function we're writing, it can play a large part in how easily the function can be digested by a reader. Try to be mindful to stay around the same level of abstraction and avoid mixing high-level concepts with low-level details.
+While an uncommon consideration, remaining on a single level of abstraction can ease comprehension for readers. Avoid mixing high-level concepts with low-level details.
 
-In the following example, an API controller's `Create` action is handling both the creation of an external user as well as the local user entity. While this isn't inherently an issue, the levels of abstraction are vastly different and it makes the function harder to follow.
+Consider the following example in which an API controller's `Create` action is handling both the creation of an external user as well as the local user entity.
 
 ```CS
 [HttpPost]
 public IActionResult Create([FromBody] UserDto dto)
 {
-    // Low level abstraction - directly interacting with a REST Client/external API and handling response
+    // -----------------------------------------------------------------------------------------
+    // #region Low level abstraction - directly interacting with a REST Client/external API and handling response
+    // -----------------------------------------------------------------------------------------
+
     var request = new RestRequest();
     request.AddJsonBody(JsonConvert.SerializeObject(dto));
 
@@ -43,22 +46,25 @@ public IActionResult Create([FromBody] UserDto dto)
         new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }
     );
 
+    // #endregion Low level abstraction - directly interacting with a REST Client/external API and handling response
+
     var user = new User
     {
         ExternalId = externalUserDto.Id,
-        FirstName = dto.FirstName,
-        IsEnabled = dto.IsEnabled,
-        IsSuperAdmin = dto.IsSuperAdmin,
-        LastName = dto.LastName,
-        Username = dto.Username,
+        // ...
     };
 
-    // High level abstraction - persistence of a domain entity using a repository
+    // -----------------------------------------------------------------------------------------
+    // #region High level abstraction - persistence of a domain entity using a repository
+    // -----------------------------------------------------------------------------------------
+
     var createResult = _createConductor.Create(user, dto.Password);
     if (createResult.HasErrors)
     {
         return InternalError<UserDto>(createResult.Errors);
     }
+
+    // #endregion High level abstraction - persistence of a domain entity using a repository
 
     return Created(createResult.ResultObject);
 }
@@ -70,31 +76,37 @@ A better way to handle this would be abstracting the external user creation into
 [HttpPost]
 public IActionResult Create([FromBody] UserDto dto)
 {
-    // High level abstraction - interaction with an external service is wrapped in a provider
+    // -----------------------------------------------------------------------------------------
+    // #region High level abstraction - interaction with an external service is wrapped in a provider
+    // -----------------------------------------------------------------------------------------
+
     var externalUserResult = _externalProvider.Create(dto);
     if (externalUserResult.HasErrors)
     {
         return InternalError<UserDto>(externalUserResult.Errors);
     }
 
-    var externalUser = externalUserResult.ResultObject;
+    var externalUserDto = externalUserResult.ResultObject;
+
+    // #endregion High level abstraction - interaction with an external service is wrapped in a provider
 
     var user = new User
     {
         ExternalId = externalUserDto.Id,
-        FirstName = dto.FirstName,
-        IsEnabled = dto.IsEnabled,
-        IsSuperAdmin = dto.IsSuperAdmin,
-        LastName = dto.LastName,
-        Username = dto.Username,
+        // ...
     };
 
-    // High level abstraction - persistence of a domain entity using a repository
+    // -----------------------------------------------------------------------------------------
+    // #region High level abstraction - persistence of a domain entity using a repository
+    // -----------------------------------------------------------------------------------------
+
     var createResult = _createConductor.Create(user, dto.Password);
     if (createResult.HasErrors)
     {
         return InternalError<UserDto>(createResult.Errors);
     }
+
+    // #endregion High level abstraction - persistence of a domain entity using a repository
 
     return Created(createResult.ResultObject);
 }
