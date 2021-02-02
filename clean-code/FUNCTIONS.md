@@ -315,7 +315,7 @@ public IResult<File> PopulateEmptyFile(string content) => Do<File>.Try((r) =>
 
 ## Structured Programming
 
-Structured programming is defined by functions having a single entry and a single exit point. Which limits each function to a single `return` statement. Writing functions in such a way that only a single return is needed generally benefits a large function. When functions are kept small, short circuiting functions with `return`, `break` and `continue` can often be more expressive.
+Structured programming is defined by functions having a single entry and a single exit point. This principle limits each function to a single `return` statement. Writing functions in such a way that only a single return is needed generally benefits a large function. However, when functions are kept small, short circuiting functions with `return`, `break` and `continue` can often be more expressive.
 
 Below is a common case for breaking Structured Programming by short circuiting the function. Alternatively, an `alignmentStyle` variable could be reassigned based on the `alignments.includes(#style)`, returning a single reassigned variable in an effort to maintain a structured format.
 
