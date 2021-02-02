@@ -260,11 +260,58 @@ function set<T>(key: string, value: T): boolean {
 }
 ```
 
-## Prefer exceptions to returning error codes
+## Prefer Exceptions to Returning Error Codes
 
--   [TODO: Issue #41 - Book Club: Document our use of "Clean Code: Functions - Prefer exceptions to returning error codes"](https://github.com/AndcultureCode/AndcultureCode/issues/41)
--   largely antiquated
--   extracting the “try” portion is too far, but understand shared “catches”
+When there is an exception, **do not** catch it and return an error code.
+This causes a problem for the caller, because they must immediately deal with the error even if they are not the appropriate place to handle it. This approach is largely antiquated.
+
+```CSharp
+// Do not return error codes
+
+public CreateResponse CreateFile(File file) {
+    try {
+        FunctionThatThrowsAnException(file);
+        return CreateResponse.Success;
+    } catch (AccessException ex) {
+        return CreateResponse.AccessIssues;
+    } catch (Exception ex) {
+        return CreateResponse.Exception;
+    }
+}
+```
+
+It is **unnecessary** to split the try and logic code into separate functions.
+While this does separate the code into two different things (creating file and handling exceptions), it is not necessary when we use shared error handling.
+
+```CSharp
+// Do not split catching and functionality
+
+public File CreateEmptyFile() {
+    return CreateFile(new File(...))
+}
+
+public File CreateFile(File file) {
+    try {
+        return FunctionThatThrowsAnException(file);
+    } catch (Exception ex) {
+        LogException(ex);
+        return null;
+    }
+}
+```
+
+We should also use shared "catching" code (such as `Do/Try`) that handles the exceptions consistently.
+In this case any exceptions from `CreateEmptyFile()` are caught by `PopulateEmptyFile()`.
+
+```CSharp
+// Used shared catching code
+
+public IResult<File> PopulateEmptyFile(string content) => Do<File>.Try((r) =>
+    var file = CreateEmptyFile();
+    // populate functionality
+    return file;
+}).Result;
+```
 
 ## Structured Programming
 
