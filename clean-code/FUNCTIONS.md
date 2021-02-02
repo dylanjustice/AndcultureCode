@@ -111,8 +111,32 @@ function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 
 ## Structured Programming
 
--   [TODO: Issue #42 - Book Club: Document our use of "Clean Code: Functions - Structured Programming"](https://github.com/AndcultureCode/AndcultureCode/issues/42)
--   if functions are small, breaks/continues/next are “okay” - isn’t hard an fast
+Structured programming is defined by functions having a single entry and a single exit point. Which limits each function to a single `return` statement. Writing functions in such a way that only a single return is needed generally benefits a large function. When functions are kept small, short circuiting functions with `return`, `break` and `continue` can often be more expressive.
+
+Below is a common case for breaking Structured Programming by short circuiting the function. Alternatively, an `alignmentStyle` variable could be reassigned based on the `alignments.includes(#style)`, returning a single reassigned variable in an effort to maintain a structured format.
+
+```TypeScript
+
+public getAlignmentStyle(styles: string[]): TableCellAlignmentStyle {
+        const alignments: string[] = styles.filter((x) =>
+            x.match("^align") ? x : null;
+        );
+
+        if (alignments.includes("align-left")) {
+            return TableCellAlignmentStyle.Left;
+        }
+        if (alignments.includes("align-right")) {
+            return TableCellAlignmentStyle.Right;
+        }
+        if (alignments.includes("align-center")) {
+            return TableCellAlignmentStyle.Center;
+        }
+        if (alignments.includes("align-justify")) {
+            return TableCellAlignmentStyle.Justify;
+        }
+        return TableCellAlignmentStyle.None;
+    }
+```
 
 ## How Do You Write Functions Like This?
 
