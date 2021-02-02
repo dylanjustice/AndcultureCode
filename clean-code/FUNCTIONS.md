@@ -268,15 +268,6 @@ This causes a problem for the caller, because they must immediately deal with th
 ```CSharp
 // Do not return error codes
 
-public File CreateEmptyFile() {
-    var result = CreateFile(new File(...));
-    if (result == CreateResponse.Success) {
-        // success case
-    } else {
-        // handle multiple failure cases
-    }
-}
-
 public CreateResponse CreateFile(File file) {
     try {
         FunctionThatThrowsAnException(file);
@@ -309,21 +300,17 @@ public File CreateFile(File file) {
 }
 ```
 
-You **should** write happy path code that allows exceptions to bubble up to the appropriate level.
 We should also use shared "catching" code (such as `Do/Try`) that handles the exceptions consistently.
-In this case `CreateEmptyFile()` should allow the exception to continue bubbling up, while `PopulateEmptyFile()` could catch and handle the exception.
+In this case any exceptions from `CreateEmptyFile()` are caught by `PopulateEmptyFile()`.
 
 ```CSharp
-// Allow errors to bubble up to shared catch code
+// Used shared catching code
 
-public IResult<File> PopulateEmptyFile() => Do<File>.Try((r) =>
+public IResult<File> PopulateEmptyFile(string content) => Do<File>.Try((r) =>
     var file = CreateEmptyFile();
     // populate functionality
+    return file;
 }).Result;
-
-public File CreateEmptyFile() {
-    return FunctionThatThrowsAnException(new File(...))
-}
 ```
 
 ## Structured Programming
