@@ -322,23 +322,22 @@ Below is a common case for breaking Structured Programming by short circuiting t
 ```TypeScript
 
 public getAlignmentStyle(styles: string[]): TableCellAlignmentStyle {
-        const alignments: string[] = styles.filter((x) =>
-            x.match("^align") ? x : null;
-        );
-
-        if (alignments.includes("align-left")) {
-            return TableCellAlignmentStyle.Left;
-        }
-        if (alignments.includes("align-right")) {
-            return TableCellAlignmentStyle.Right;
-        }
-        if (alignments.includes("align-center")) {
-            return TableCellAlignmentStyle.Center;
-        }
-        if (alignments.includes("align-justify")) {
-            return TableCellAlignmentStyle.Justify;
-        }
-        return TableCellAlignmentStyle.None;
+    const alignments: string[] = styles.filter((x) =>
+        x.match("^align") ? x : null;
+    );
+    if (alignments.includes("align-left")) {
+        return TableCellAlignmentStyle.Left;
+    }
+    if (alignments.includes("align-right")) {
+        return TableCellAlignmentStyle.Right;
+    }
+    if (alignments.includes("align-center")) {
+        return TableCellAlignmentStyle.Center;
+    }
+    if (alignments.includes("align-justify")) {
+        return TableCellAlignmentStyle.Justify;
+    }
+    return TableCellAlignmentStyle.None;
     }
 ```
 
