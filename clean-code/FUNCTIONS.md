@@ -6,16 +6,144 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## Small!
 
--   [TODO: Issue #33 - Book Club: Document our use of "Clean Code: Functions - Small!"](https://github.com/AndcultureCode/AndcultureCode/issues/33)
--   book = strive for max of 20, us = we will use as general guideline, but not hard requirement
--   by following other principles, helps get toward small
+When writing functions, strive to keep them small. As a general guideline, do your best to keep functions less than twenty lines.
+
+By sticking to other clean code principles, this guideline will be more easily achievable. For example, by ensuring your function only does one thing, or that it doesn't have side-effects, it will naturally be more concise and readable.
 
 ## Do one thing
 
--   [TODO: Issue #34 - Book Club: Document our use of "Clean Code: Functions - Do one thing"](https://github.com/AndcultureCode/AndcultureCode/issues/34)
--   naming concept - follow what function does
--   code smell if you are adding “and”, “or”... to your names
--   another code smell, boolean parameters as immediate branches of logic
+Functions should do one thing, and do it well. When writing a function, it should be easy to follow without multiple branching paths of execution.
+
+When naming a function, you can sometimes identify if it's doing more than one thing by identifying what the function does in the name. For example:
+
+```CS
+public IResult<Stock> CreateStockAndUpdateFromApi(string ticker) => Do<Stock>.Try((r) =>
+{
+    var stock = new Stock
+    {
+        Ticker = ticker
+    };
+
+    var createResult = _stockRepository.Create(stock);
+
+    if (createResult.HasErorrsOrResultIsNull())
+    {
+        r.AddErrors(createResult.Errors);
+        return null;
+    }
+
+    var apiResponse = _stockApi.GetData(ticker);
+
+    if (apiResponse.HasErrors)
+    {
+        r.AddErrors(apiResponse.Errors);
+        return stock;
+    }
+
+    stock.Price = apiResponse.Data.LatestPrice;
+    stock.LastClose = apiResponse.Data.Close;
+
+    _dbContext.SaveChanges();
+
+    return stock;
+})
+.Result;
+```
+
+In this case, it's clear from the name that this is doing more than one thing: it's both creating a new Stock entity, as well as updating some data based on an API. A better delineation of concerns would be as follows:
+
+```CS
+public IResult<Stock> CreateStock(string ticker) => Do<Stock>.Try((r) =>
+{
+    var stock = new Stock
+    {
+        Ticker = ticker
+    };
+
+    var createResult = _stockRepository.Create(stock);
+
+    if (createResult.HasErorrsOrResultIsNull())
+    {
+        r.AddErrors(createResult.Errors);
+        return null;
+    }
+
+    return stock;
+})
+.Result;
+
+public IResult<bool> UpdateStockFromApi(long id) => Do<bool>.Try((r) =>
+{
+    var stock = _dbContext.Stocks.Where(e => e.Id == id);
+
+    if (stock == null)
+    {
+        return false;
+    }
+
+    var apiResponse = _stockApi.GetData(stock.Ticker);
+
+    if (apiResponse.HasErrors)
+    {
+        r.AddErrors(apiResponse.Errors);
+        return false;
+    }
+
+    stock.Price = apiResponse.Data.LatestPrice;
+    stock.LastClose = apiResponse.Data.Close;
+
+    _dbContext.SaveChanges();
+
+    return true;
+})
+.Result;
+```
+
+This leads to more granular functions that can be called independently from one another. It also creates more maintainable code. Each function now only has one reason to change.
+
+Finally, beware of branching execution paths in your functions. While there are exceptions, in general you should consider it a code smell when there are boolean parameters defining different paths of logic. For example:
+
+```CS
+public IResult<decimal> GetLatestPrice(string ticker, bool updateDatabase) => Do<decimal>.Try((r) =>
+{
+    var stock = _dbContext.Stocks.Where(e => e.Ticker == ticker);
+
+    if (stock == null)
+    {
+        return false;
+    }
+
+    var apiResponse = _stockApi.GetData(ticker);
+
+    if (apiResponse.HasErrors)
+    {
+        r.AddErrors(apiResponse.Errors);
+        return false;
+    }
+
+    var latestPrice = apiResponse.Data.LatestPrice;
+
+    if (updateDatabase)
+    {
+        stock.Price = latestPrice;
+
+        var updateResult = _stockRepository.Update(stock);
+
+        if (updateResult.HasErrors)
+        {
+            r.AddErrors(updateResult.Errors);
+            return latestPrice;
+        }
+    }
+
+    return latestPrice;
+})
+.Result;
+```
+
+The issue with this is clear: adding an optional execution path muddies the responsibilites of the function, and gives it multiple reasons to require modification (if the process to update a stock changes, or if the process to retrieve the latest price changes).
+
+The above example would be cleaner and easier to maintain if simply broken out into two separate functions, one to grab the latest price from the API and another to update the entity in the repository.
 
 ## One level of abstraction per function
 
