@@ -1,4 +1,4 @@
-# Clean Code: Functions
+# Clean Code: Comments
 
 [Table of Contents](../CLEAN-CODE.md)
 
