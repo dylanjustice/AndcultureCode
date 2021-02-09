@@ -9,3 +9,9 @@ Simple rules for creating good names.
 ## [Functions](clean-code/FUNCTIONS.md)
 
 Functions are the first line of organization in any program. Lets prioritize writing them well.
+
+## [Comments](clean-code/COMMENTS.md)
+
+Nothing quite like a well-placed comment.
+Nothing clutters up code more than frivolous comments.
+Nothing is quite as damaging as out-of-date incorrect comments.
