@@ -125,7 +125,7 @@ var annexes = new List<Annex>
 ### Doc Comments in Public API's
 
 Javadocs and Summary comments can be used to generate documentation through OpenAPI documentation
-tools like Swagger. For public api's this is useful to the consumer and is easy to maintain by the
+tools like Swagger. For public API's this is useful to the consumer and is easy to maintain by the
 development team.
 
 ```CSharp
