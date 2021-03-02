@@ -99,7 +99,7 @@ should be called out in code review. Please follow the below template or similar
 public includeSectionLabel(): boolean {
     // TODO: Pending resolution of [NFPA-3522](https://app.clickup.com/t/2219993/NFPA-3522)
     // Long term decision on whether labels will be displayed
-    return this.code === "70";
+    return this.type === PublicationTypes.NEC;
 }
 ```
 
