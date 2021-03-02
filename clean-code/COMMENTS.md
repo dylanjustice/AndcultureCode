@@ -10,6 +10,8 @@ to express yourself in code whenever possible.
 Comments suggesting a refactor later should be _rare_ and prioritized to be completed shortly
 after their creation.
 
+## Explain Yourself in Code
+
 ## Good Comments
 
 ### Informative Comments
