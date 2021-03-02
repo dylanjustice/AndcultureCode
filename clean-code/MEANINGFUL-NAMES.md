@@ -6,7 +6,7 @@ Simple rules for creating good names.
 
 ## Meaningful Names
 
-### Use Intention Revealing Names
+### Use Intention-Revealing Names
 
 The name of a thing should answer what it does, how it's used, and why it exists. Simply by reading
 the name you should have some sense of the intention.
@@ -17,7 +17,6 @@ For example, the following code doesn't indicate the intention:
 public bool Compare(List<Product> list, float ct)
 {
     var c = 19.99f; // Products below this cost should not contribute to the total.
-
     var tc = 0;
 
     foreach (var l in list)
@@ -41,10 +40,9 @@ doing. Simply by renaming variables, methods, etc., you can add significant clar
 For example, the above could be rewritten as such:
 
 ```CS
-public bool AreProductsAboveCostThreshold(List<Product> products, float costThreshold)
+public bool IsProductsTotalCostAboveThreshold(List<Product> products, float costThreshold)
 {
     var minimumCost = 19.99f; // Products below this cost should not contribute to the total.
-
     var totalCost = 0;
 
     foreach (var product in products)
