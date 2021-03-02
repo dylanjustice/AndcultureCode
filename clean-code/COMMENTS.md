@@ -151,7 +151,7 @@ development team.
     /// <returns>Created UserBookmark</returns>
     /// <response code="201">UserBookmark successfully created</response>
     /// <response code="400">Provided UserBookmark is invalid</response>
-    /// <response code="401">User is unauthenticated</response>
+    /// <response code="401">User is not authenticated</response>
     /// <response code="403">User is not authorized to perform this action</response>
     /// <response code="404">Resource or related resource not found</response>
     /// <response code="500">Errors were encountered creating data</response>
