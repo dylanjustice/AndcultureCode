@@ -93,7 +93,7 @@ back.
 ### TODO Comments
 
 TODO Comments should not be left in the codebase without a paired PBI/Issue Number. Missing PBI's
-should be called out in code review. Please follow the below template, or similar.
+should be called out in code review. Please follow the below template or similar.
 
 ```typescript
 public includeSectionLabel(): boolean {
