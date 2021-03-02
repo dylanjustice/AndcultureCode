@@ -29,7 +29,7 @@ XElement.Parse(
 ### Explanation of intent
 
 Providing context to the decision to write code in a certain way is an acceptable form of
-commenting. Interesting decisions that can be reconciled through a short comment explaining why
+commenting. Interesting decisions can be reconciled through a short comment explaining why
 code was written in a certain way. However, beware of comments that can become outdated or incorrect
 over time as implementations change.
 
