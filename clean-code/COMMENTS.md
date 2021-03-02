@@ -63,7 +63,7 @@ var currentSections =
      on new
      {
          Code = bookmark.PublicationCode,
-         Edition =bookmark.PublicationEdition,
+         Edition = bookmark.PublicationEdition,
          Id = section.PublicationId
      }
      equals new { publication.Code, publication.Edition, publication.Id }
@@ -73,7 +73,7 @@ var currentSections =
 ### Warning of Consequences
 
 Comments adding cautionary statements to other developers call the safety of the code itself.
-In the below case. Consider removing the test completely, or skipping it. You can always get it
+In the below case, consider removing the test completely or skipping it. You can always get it
 back.
 
 ```java
