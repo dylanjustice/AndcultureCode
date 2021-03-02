@@ -107,7 +107,7 @@ public includeSectionLabel(): boolean {
 
 Comments used to amplify the importance of code present a good use case for writing a unit test to
 enforce something seemingly inconsequential.
-However, within automated tests we do prefer important setup be called wout with a brief explanation
+However, within automated tests we do prefer important setup be called out with a brief explanation
 why that line is so important.
 
 ```CSharp
