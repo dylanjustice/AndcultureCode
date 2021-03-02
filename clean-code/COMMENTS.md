@@ -34,7 +34,7 @@ code was written in a certain way. However, beware of comments that can become o
 over time as implementations change.
 
 ```CSharp
-// In the event of a retry, check if this Section is already created. Ignoriquery filters
+// In the event of a retry, check if this Section is already created. Ignore query filters
 // to find unpublished since the publication is still importing.
 IResult<bool> importResult = null;
 var preexistingSectionReadResult = _sectionReadConductor.FindAll(
@@ -75,6 +75,20 @@ var currentSections =
 Comments adding cautionary statements to other developers call the safety of the code itself.
 In the below case. Consider removing the test completely, or skipping it. You can always get it
 back.
+
+```java
+// Don't run unless you have some time to kill
+    public void _testWithReallyBigFile()
+    {
+        writeLInesToFile(1000000);
+
+        response.setBody(testFile);
+        response.readyToSend(this);
+        String responseString = output.toString();
+        assertSubString("Content-Length: 1000000", responseString);
+        assertTrue(bytesSent > 1000000);
+    }
+```
 
 ### TODO Comments
 
