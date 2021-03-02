@@ -16,7 +16,8 @@ after their creation.
 
 ### Informative Comments
 
-Comments can be used as additional information for code that is difficult to decipher, even in the best circumstances. For instance, regex patterns even when well named can easily lose context.
+Comments can be used as additional information for code that is difficult to decipher, even in the
+best circumstances. For instance, even well named regex patterns can easily lose context.
 
 ```CSharp
 // Replace spaces before or after inline elements (i.e /inline>\s+< or >\s+<inline)
@@ -27,7 +28,10 @@ XElement.Parse(
 
 ### Explanation of intent
 
-Providing context to the decision to write code in a certain way is an acceptable form of commenting. Interesting decisions that can be reconciled through a short comment explaining why code was written in a certain way. Alternatively, providing context that will last over time where the domain knowledge may fade away.
+Providing context to the decision to write code in a certain way is an acceptable form of
+commenting. Interesting decisions that can be reconciled through a short comment explaining why
+code was written in a certain way. However, beware of comments that can become outdated or incorrect
+over time as implementations change.
 
 ```CSharp
 // In the event of a retry, check if this Section is already created. Ignoriquery filters
@@ -46,7 +50,9 @@ var preexistingSectionReadResult = _sectionReadConductor.FindAll(
 ### Clarification
 
 Similar to explaining intent, sometimes it's helpful to include a translation to obscurities
-for the sake of making code more readable. In most cases, it's advised to refactor in a way that removes the need for a comment. For example, when code is written with syntax the team would traditionally shy away from for the sake of a purpose, clarifying that purpose is worth the comment.
+for the sake of making code more readable. In most cases, it's advised to refactor in a way that
+removes the need for a comment. For example, when code is written with syntax the team would
+traditionally shy away from for the sake of a purpose, clarifying that purpose is worth the comment.
 
 ```CSharp
 // Use LINQ syntax in place of expression syntax for optimal readability and query performance
@@ -66,40 +72,47 @@ var currentSections =
 
 ### Warning of Consequences
 
-Comments adding cautionary statements to other developers call the safety of the code itself. In the below case. Consider removing the test completely, or skipping it. You can always get it back.
+Comments adding cautionary statements to other developers call the safety of the code itself.
+In the below case. Consider removing the test completely, or skipping it. You can always get it
+back.
 
 ### TODO Comments
 
-TODO Comments should not be left in the codebase without a paired PBI/Issue Number. Missing PBI's should be called out in code review. Please follow the below template, or similar.
+TODO Comments should not be left in the codebase without a paired PBI/Issue Number. Missing PBI's
+should be called out in code review. Please follow the below template, or similar.
 
 ```typescript
 public includeSectionLabel(): boolean {
-        // TODO: Pending resolution of [NFPA-3522](https://app.clickup.com/t/2219993/NFPA-3522)
-        // Long term decision on whether labels will be displayed
-        return this.code === "70";
-    }
+    // TODO: Pending resolution of [NFPA-3522](https://app.clickup.com/t/2219993/NFPA-3522)
+    // Long term decision on whether labels will be displayed
+    return this.code === "70";
+}
 ```
 
 ### Amplification
 
-Comments used to amplify the importance of code present a good use case for writing a unit test to enforce something seemingly inconsequential.
-However, within automated tests we do prefer important setup be called wout with a brief explanation why that line is so important.
+Comments used to amplify the importance of code present a good use case for writing a unit test to
+enforce something seemingly inconsequential.
+However, within automated tests we do prefer important setup be called wout with a brief explanation
+why that line is so important.
 
 ```CSharp
 var annexes = new List<Annex>
-            {
-                // This is an important setup step, including an Article with a reference in its body
-                Create<Annex>(
-                    (e) => e.Body = Build<XElement>(XElementFactory.WITH_EXTERNAL_ID).ToString(),
-                    (e) => e.PublicationId = publication.Id
-                ),
-                Create<Annex>((e) => e.PublicationId = publication.Id),
-            };
+    {
+        // This is an important setup step, including an Article with a reference in its body
+        Create<Annex>(
+            (e) => e.Body = Build<XElement>(XElementFactory.WITH_EXTERNAL_ID).ToString(),
+            (e) => e.PublicationId = publication.Id
+        ),
+        Create<Annex>((e) => e.PublicationId = publication.Id),
+    };
 ```
 
 ### Doc Comments in Public API's
 
-Javadocs and Summary comments can be used to generate documentation through OpenAPI documentation tools like Swagger. For public api's this is useful to the consumer and is easy to maintain by the development team.
+Javadocs and Summary comments can be used to generate documentation through OpenAPI documentation
+tools like Swagger. For public api's this is useful to the consumer and is easy to maintain by the
+development team.
 
 ```CSharp
  #region HTTP Post
