@@ -60,14 +60,14 @@ var currentSections =
     from section in latestSectionsResult.ResultObject
     join bookmark in userBookmarks on section.ExternalId equalsbookmark.ExternalId
     join publication in latestPublications
-     on new
-     {
-         Code = bookmark.PublicationCode,
-         Edition = bookmark.PublicationEdition,
-         Id = section.PublicationId
-     }
-     equals new { publication.Code, publication.Edition, publication.Id }
-     select section;
+        on new
+        {
+            Code = bookmark.PublicationCode,
+            Edition = bookmark.PublicationEdition,
+            Id = section.PublicationId
+        }
+        equals new { publication.Code, publication.Edition, publication.Id }
+    select section;
 ```
 
 ### Warning of Consequences
