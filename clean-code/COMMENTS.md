@@ -12,6 +12,69 @@ after their creation.
 
 ## Explain Yourself in Code
 
+Code should be self-documenting whenever possible. Breaking out complex logical expressions into
+variables or functions can help readability and replace the need for a comment at all.
+
+**Bad**
+
+```tsx
+{
+    return (
+        <React.Fragment>
+            {// Only show the admin actions if user has admin, publisher or author roles
+            (user.hasRole(RoleType.SystemAdmin) ||
+                user.hasRole(RoleType.Publisher) ||
+                user.hasRole(RoleType.Author)) && (
+                <AdminContextMenu {...props} />
+            )}
+        </React.Fragment>
+    );
+}
+```
+
+**Better**
+
+Break out a variable to reduce nesting and capture a higher-level concept.
+
+```tsx
+{
+    const hasEditingAccess =
+        user.hasRole(RoleType.SystemAdmin) ||
+        user.hasRole(RoleType.Publisher) ||
+        user.hasRole(RoleType.Author);
+
+    return (
+        <React.Fragment>
+            {hasEditingAccess && <AdminContextMenu {...props} />}
+        </React.Fragment>
+    );
+}
+```
+
+**Ideal**
+
+Combine view model methods to capture this higher-level concept and reduce duplication.
+
+```ts
+// user-record.ts
+public hasAdminRole(): boolean {
+    return this.hasRole(RoleType.SystemAdmin) ||
+        this.hasRole(RoleType.Publisher) ||
+        this.hasRole(RoleType.Author);
+}
+```
+
+```tsx
+// component-detail.tsx
+{
+    return (
+        <React.Fragment>
+            {user.hasAdminRole() && <AdminContextMenu {...props} />}
+        </React.Fragment>
+    );
+}
+```
+
 ## Good Comments
 
 ### Informative Comments
