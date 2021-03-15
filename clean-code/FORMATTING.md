@@ -30,4 +30,11 @@ https://github.com/AndcultureCode/AndcultureCode/issues/71
 
 ### Team Rules
 
-https://github.com/AndcultureCode/AndcultureCode/issues/72
+We value consistency across our projects. While we will always have disagreements about
+conventions, all project teams should up hold conventions until the team has agreed to make a change.
+
+Team members should strive to make their code indistinguishable. We could go as far as to say it is a
+code smell if you can tell who authored a piece of code.
+
+That said, these documents are in no way set in stone. Proposals to change our practices are welcomed
+and very much expected.
