@@ -28,7 +28,25 @@ length can also be called out in code reviews.
 
 ### Alignment
 
-https://github.com/AndcultureCode/AndcultureCode/issues/70
+Horizontal alignment is nice to look at, but it can take away from the true intent of your code.
+
+```CSharp
+ var pasteValidationResult = _pasteValidateConductor.Validate(contentAreaVersionComponentId:       id,
+                                                              courseId:                            dto.CourseId,
+                                                              sourceContentAreaVersionComponentId: dto.SourceId);
+```
+
+If a list of declarations is more easily read when aligned horizontally, the chances are you should consider breaking up the list into another class, etc.
+
+We highly encourage you and your team to consider the use of automated formatting tools to standardize and simplify your formatting practice. The below example utilizes the default Microsoft formatter for C#.
+
+```CSharp
+var pasteValidationResult = _pasteValidateConductor.Validate(
+    contentAreaVersionComponentId: id,
+    courseId: dto.CourseId,
+    sourceContentAreaVersionComponentId: dto.SourceId
+);
+```
 
 ### Indentation
 
