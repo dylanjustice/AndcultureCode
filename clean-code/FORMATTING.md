@@ -38,7 +38,7 @@ Horizontal alignment is nice to look at, but it can take away from the true inte
 
 If a list of declarations is more easily read when aligned horizontally, the chances are you should consider breaking up the list into another class, etc.
 
-Furthermore, we highly encourage you and your team should consider the use of automated formatting tools to standardize and simplify your formatting practice. The below example utilizes the default Microsoft formatter for C#.
+We highly encourage you and your team should consider the use of automated formatting tools to standardize and simplify your formatting practice. The below example utilizes the default Microsoft formatter for C#.
 
 ```CSharp
 var pasteValidationResult = _pasteValidateConductor.Validate(
