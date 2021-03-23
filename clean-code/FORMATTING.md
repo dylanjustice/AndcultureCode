@@ -98,7 +98,125 @@ var pasteValidationResult = _pasteValidateConductor.Validate(
 
 ### Indentation
 
-https://github.com/AndcultureCode/AndcultureCode/issues/71
+When encountering single lines of execution within a block of code, you should use curly braces.  Curly braces provide a visual aid in reading scoped code execution.  They also aid in preventing unexpected errors.
+
+Consider the following code example which we consider a bad coding practice:
+```CSharp
+if (radius > upperLimit)
+    return true;
+else if (radius < lowerLimit)
+    return true;
+else
+    return false;
+```
+
+Left to its current logical code execution paths, the above should be re-written like this:
+```CSharp
+if (radius > upperLimit)
+{
+    return true;
+}
+else if (radius < lowerLimit)
+{
+    return true;
+}
+else
+{
+    return false;
+}
+```
+
+While this refactored code is easier to read, the inclusion of the `else if` and `else` further muddy its implementation and its desireability.  This logic could be inversed making for a cleaner, shorter set of code that accomplishes the same thing.  Check it out:
+```CSharp
+if (radius >= lowerLimit && radius <= upperLimit)
+{
+    return false;
+}
+return true;
+```
+
+Better yet, we could eliminate the indenting entirely...
+```CSharp
+return radius > upperLimit || radius < lowerLimit;
+```
+
+As with any rule, certain exceptions can apply.  One such exception to this rule is the use of expression bodies.
+
+Consider the following code:
+```CSharp
+private bool _isNewLineBetterthanSameLine;
+public bool IsNewLineBetterThanSameLine
+{
+    get
+    {
+        return _isNewLineBetterthanSameLine;
+    }
+}
+```
+
+While we value curly braces, we also realize the code bloat it can lend itself to.  The above is one such example.  Consider rewriting this using an expression body and eliminating the need for curly braces entirely:
+```CSharp
+private bool _isNewLineBetterthanSameLine;
+public bool IsNewLineBetterThanSameLine => _isNewLineBetterthanSameLine;
+```
+
+Also when indenting, you should always be aware of the number of nested indents being used. Nested indents within a single function can be considered a code smell and we avoid them as much as possible.  Therefore, you should strive to never indent more than once in a single function.
+
+Consider this hard to read, nested indenting function code:
+```CSharp
+public decimal GetAllOrderCosts(Order orders)
+{
+    var allOrderCosts = 0;
+    orders.ForEach(order => {
+        for (var index = 0; index <= OrderItems.length; index++)
+        {
+            var orderItem = OrderItems[index];
+            decimal orderItemCost = 0;
+            if (orderItem.IsFlatCost)
+            {
+                allOrderCosts += orderItem.FlatCost;
+                continue;
+            }
+            allOrderCosts += GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost);
+        };
+    });
+    return allOrderCosts;
+}
+```
+
+The above example could be rewritten as follows:
+```CSharp
+public decimal GetOrderItemCost(OrderItem orderItem)
+{
+    if (orderItem.IsFlatCost)
+    {
+        return orderItem.FlatCost;
+    }
+    return GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost);
+}
+
+public decimal GetOrderCost(Order order)
+{
+    decimal orderCost = 0;
+    order.Items.ForEach(orderItem =>
+    {
+        orderCost = GetOrderItemCost(orderItem);
+    });
+    return orderCost;
+}
+
+public decimal GetAllOrderCosts(List<Order> orders)
+{
+    var allOrderCosts = 0;
+    orders.ForEach(order =>
+    {
+        allOrderCosts += GetOrderCost(order);
+    });
+    return allOrderCosts;
+}
+```
+
+It should also be noted that the above example goes hand-in-hand with the core concepts previously discussed in [Functions - Do One Thing](https://github.com/AndcultureCode/AndcultureCode/blob/main/clean-code/FUNCTIONS.md#do-one-thing) and [Functions - Simple](https://github.com/AndcultureCode/AndcultureCode/blob/main/clean-code/FUNCTIONS.md#do-one-thing)
 
 ### Team Rules
 
