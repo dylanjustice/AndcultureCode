@@ -1,6 +1,6 @@
 # AndcultureCode
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 We are the engineering team at andculture focused on developing technology solutions. Come build with us.
@@ -44,6 +44,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/Stefanie899"><img src="https://avatars.githubusercontent.com/u/37462028?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stefanie Leitch</b></sub></a><br /><a href="https://github.com/AndcultureCode/AndcultureCode/pulls?q=is%3Apr+reviewed-by%3AStefanie899" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/AndcultureCode/AndcultureCode/commits?author=Stefanie899" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/joshuapeters"><img src="https://avatars.githubusercontent.com/u/9259962?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Joshua Peters</b></sub></a><br /><a href="https://github.com/AndcultureCode/AndcultureCode/pulls?q=is%3Apr+reviewed-by%3Ajoshuapeters" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/AndcultureCode/AndcultureCode/commits?author=joshuapeters" title="Documentation">📖</a></td>
   </tr>
 </table>
 
