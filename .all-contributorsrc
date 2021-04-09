@@ -33,6 +33,17 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "wintondeshong",
+      "name": "Winton DeShong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48424?v=4",
+      "profile": "http://www.winton.me/",
+      "contributions": [
+        "maintenance",
+        "review",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
