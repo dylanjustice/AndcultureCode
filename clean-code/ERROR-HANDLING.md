@@ -63,7 +63,8 @@ public class DeviceController
         CloseDevice(handle);
     }
 
-    private DeviceHandle GetHandle(DeviceId id) {
+    private DeviceHandle GetHandle(DeviceId id)
+    {
         ...
         throw new DeviceShutDownException($"Invalid handle for {id.ToString}");
         ...
