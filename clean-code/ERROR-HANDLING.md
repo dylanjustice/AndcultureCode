@@ -5,8 +5,8 @@
 ## Write Your Try-Catch-Finally Statement First
 
 Failure scenarios should be thought about up front to build reliable software. Too often we are
-tempted to simply write the happy-path, leaving our systems to terminate normal execution
-of our applications with unhandled errors/exceptions.
+tempted to simply write the happy-path, leaving our applications to terminate normal execution with
+unhandled exceptions.
 
 Following Microsoft's recommendations to avoid exceptions for normal code flow, we draw inspiration
 from their .NET Framework `TryXXX()` Pattern by using [`Do.Try`](https://andculturecode.github.io/AndcultureCode.CSharp.Core/docs/#dotry).
