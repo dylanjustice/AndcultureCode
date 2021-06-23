@@ -14,9 +14,8 @@ It is common to write some test code when exploring a new library - it's a quick
 yourself with the API. They can also be a valuable tool for ensuring expected behavior of the library
 is maintained between releases.
 
-While you shouldn't go unit testing 100% of the library's API (the library itself is hopefully
-well tested), there are certain scenarios where you'd like to be notified with a failing test if
-an upgrade changes the assumptions your code is written with.
+While you shouldn't unit test 100% of the library's API, there are certain scenarios where you'd
+like to be notified with a failing test if an upgrade changes the assumptions your code is written with.
 
 For example, `immutable`, the library we use for constructing view models on the frontend, currently
 behaves in a way that requires us to pass an object with every single property set in order to be
