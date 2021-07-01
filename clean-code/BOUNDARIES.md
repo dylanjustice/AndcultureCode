@@ -31,7 +31,7 @@ Passing such an interface throughout our system is outright dangerous. Most appl
 have no need to delete entire S3 buckets, set permissions or more fine grained aspects unique
 to S3. Additionally, this couples our application to terms and actors very specific to this particular storage provider. Suppose we want to do local file storage or azure blob storage?
 
-Instead we should aim to create more focused interface.
+Instead we should aim to create more focused interfaces.
 
 ```csharp
 public interface IStorageProvider
@@ -67,15 +67,15 @@ public class AzureBlobStorageProvider : IStorageProvider
 
 The challenge comes when abstracting this exercise to the actors _WE_ create across the
 layers of our application. Whether it be across the literal boundaries of an assembly/module or
-the more challenging to conceptualize boundary of a design pattern such as controllers, models, conductors
-and so forth. One actor we create is often the "third party" to another actor across the system that
-is also under our control.
+the more challenging to conceptualize boundary of a design pattern such as controllers, models,
+conductors and so forth. One actor we create is often the "third party" to another actor across the
+system that is also under our control.
 
-Just because we _currently_ have control of the code or assembly in our code base,
-does not mean it might not later be shared or our customer's needs change. If we
-don't take necessary actions up front to design small and well-designed interfaces/APIs now, we can find
-ourselves standing at the foot of an insurmountable mountain of refactoring and risky deployments
-later when those things inevitably change.
+Just because we _currently_ have control of the code or assembly, does not mean it might not later
+be shared or our customer's needs change. If we don't take necessary actions up front to design
+small and well-designed interfaces/APIs now, we can find ourselves standing at the foot of an
+insurmountable mountain of refactoring and risky deployments later when those things inevitably
+change.
 
 ### Learning Boundaries & Tests
 
