@@ -29,7 +29,8 @@ public interface IAmazonS3
 
 Passing such an interface throughout our system is outright dangerous. Most applications
 have no need to delete entire S3 buckets, set permissions or more fine grained aspects unique
-to S3. Additionally, this couples our application to terms and actors very specific to this particular storage provider. Suppose we want to do local file storage or azure blob storage?
+to S3. Additionally, this couples our application to terms and actors very specific to this
+particular storage provider. Suppose we want to do local file storage or Azure blob storage?
 
 Instead we should aim to create more focused interfaces.
 
